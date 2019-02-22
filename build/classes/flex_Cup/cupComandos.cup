@@ -1,0 +1,85 @@
+/*--------------- 1ra Area: Codigo de Usuario -----------------------*/
+//-------> importaciones, paquetes
+
+package backend.analizadoresTerminal;
+import java_cup.runtime.*;
+import java.util.ArrayList;
+import javax.swing.tree.DefaultMutableTreeNode;
+import backend.manejoDeDatos.*;
+
+
+
+parser code {:
+
+    private Documento documento;
+    private ManejadorDeArboles manejador;
+    private ArrayList<DefaultMutableTreeNode> listaDeNodos = new ArrayList<>();
+
+	// Connect this parser to a scanner!
+	public parser(AnalizadorLexicoTerminal lex,ManejadorDeArboles manejador) {
+		super(lex);
+                this.manejador=manejador;
+	}
+
+    //Metodo al que se llama automaticamente ante algun error sintactico
+    public void syntax_error(Symbol s)
+    {        
+        String lexema = s.value.toString();
+        int fila = s.right;
+        int columna = s.left;
+        
+        System.out.println("!!!!!!! Error Sintactico Recuperado !!!!!!!");
+        System.out.println("\t\tLexema: "+lexema);
+        System.out.println("\t\tFila: "+fila);
+        System.out.println("\t\tColumna: "+columna);
+        
+    }
+
+    //Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
+    {        
+        String lexema = s.value.toString();
+        int fila = s.right;
+        int columna = s.left;
+        
+        System.out.println("!!!!!!! Error Sintactico, Panic Mode !!!!!!! ");
+        System.out.println("\t\tLexema: "+lexema);
+        System.out.println("\t\tFila: "+fila);
+        System.out.println("\t\tColumna: "+columna);
+     
+    }
+
+:}
+
+/*--------------- 2da Area: Declaraciones -----------------------*/
+
+terminal String         CD,PWD,LS,TOUCH,MKDIR,MV,CP,RM,RMDIR,CHMOD,FORMATO_DIRECCION_ABSOLUTA,FORMATO_DIRECCION__RELATIVA,CONCATENACION,IDENTIFICADOR;
+
+non terminal Object     expresiones, expresion; 
+/*--------------- 3ra Area: Reglas Semanticas -----------------------*/
+
+start with expresiones;
+
+expresiones ::= expresion CONCATENACION expresiones | expresion;
+
+expresion ::=   CD
+                                                    {:manejador.buscarDocumentoSegunDireccion("cd");:}
+                                                    |
+                CD FORMATO_DIRECCION_ABSOLUTA:a
+                                                    {:manejador.buscarDocumentoSegunDireccion(a);System.out.printf("Direccion Absoluta:%s\n",a);:}
+                                                    |
+                CD FORMATO_DIRECCION__RELATIVA:b                                     
+                                                    {:manejador.buscarDocumentoSegunDireccion(b);System.out.printf("Direccion Relativa:%s\n",b);:}
+                                                    |
+                CD IDENTIFICADOR:c
+                                                    {:manejador.buscarDocumentoSegunDireccion(c);System.out.printf("Direccion Relativa:%s\n",c);:}
+                                                    |
+                PWD                                  
+                                                    {:manejador.escribirDireccion();:}
+                                                    |
+                LS
+                                                    {:manejador.buscarHijosDeNodo(null);:}
+                                                    |
+                error:e                                   
+                                                    {:System.out.println("No se reconoce el token");:};
+                

@@ -1,0 +1,91 @@
+/*--------------- 1ra Area: Codigo de Usuario -----------------------*/
+//-------> importaciones, paquetes
+
+package backend.analizadores;
+import java_cup.runtime.*;
+import java.util.Date;
+import java.util.ArrayList;
+import javax.swing.tree.DefaultMutableTreeNode;
+import backend.manejoDeDatos.*;
+
+
+
+parser code {:
+
+    private Documento documento;
+    private ManejadorDeArboles manejador;
+    private ArrayList<DefaultMutableTreeNode> listaDeNodos = new ArrayList<>();
+
+	// Connect this parser to a scanner!
+	public parser(AnalizadorLexicoArchivo lex,ManejadorDeArboles manejador) {
+		super(lex);
+                this.manejador=manejador;
+	}
+
+    //Metodo al que se llama automaticamente ante algun error sintactico
+    public void syntax_error(Symbol s)
+    {        
+        String lexema = s.value.toString();
+        int fila = s.right;
+        int columna = s.left;
+        
+        System.out.println("!!!!!!! Error Sintactico Recuperado !!!!!!!");
+        System.out.println("\t\tLexema: "+lexema);
+        System.out.println("\t\tFila: "+fila);
+        System.out.println("\t\tColumna: "+columna);
+        
+    }
+
+    //Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
+    {        
+        String lexema = s.value.toString();
+        int fila = s.right;
+        int columna = s.left;
+        
+        System.out.println("!!!!!!! Error Sintactico, Panic Mode !!!!!!! ");
+        System.out.println("\t\tLexema: "+lexema);
+        System.out.println("\t\tFila: "+fila);
+        System.out.println("\t\tColumna: "+columna);
+     
+    }
+
+:}
+
+/*--------------- 2da Area: Declaraciones -----------------------*/
+
+terminal String         DOS_PUNTOS,DIRECCION,DIRECCION_DE_PADRE,NOMBRE,PERMISOS,ES_FOLDER,TAMANO,FECHA_DE_CREACION,TRUE,FALSE,IDENTIFICADOR,FORMATO_DIRECCION,FORMATO_PERMISOS,FORMATO_FECHA,HORA,FORMATO_HORA;
+terminal Integer        ENTERO;
+
+non terminal Object     inicio, expresiones, expresion; 
+/*--------------- 3ra Area: Reglas Semanticas -----------------------*/
+
+start with inicio;
+
+inicio ::=  expresiones;
+
+expresiones ::= expresion expresiones | expresion;
+
+expresion ::= DIRECCION DOS_PUNTOS FORMATO_DIRECCION:a
+                                                    {:documento = new Documento(a);manejador.anadirDocumentoA_Lista(documento);System.out.printf("Direccion normal\n");:}
+            | DIRECCION_DE_PADRE DOS_PUNTOS FORMATO_DIRECCION:b
+                                                    {: documento.setDireccionDePadre(b);System.out.printf("Direccion de padre\n");:}
+            | NOMBRE DOS_PUNTOS IDENTIFICADOR:c
+                                                    {:documento.setNombre(c);
+                                                    DefaultMutableTreeNode nodo =  new DefaultMutableTreeNode(c);
+                                                    documento.setNodo(nodo);
+                                                    manejador.anadirNodoA_Arbol(documento.getDireccionDePadre(),documento.getNodo());
+                                                    System.out.printf("ID\n");:}
+            | PERMISOS DOS_PUNTOS FORMATO_PERMISOS:d
+                                                    {: documento.setPermisos(d);System.out.printf("Permisos\n");:}
+            | ES_FOLDER DOS_PUNTOS TRUE
+                                                    {: documento.setEsFolder(true);System.out.printf("Es folder verdadero\n");:}
+            | ES_FOLDER DOS_PUNTOS FALSE
+                                                    {: documento.setEsFolder(false);System.out.printf("Es folder verdadero\n");:}
+            | TAMANO DOS_PUNTOS ENTERO:g
+                                                    {: documento.setTamano(g);System.out.printf("Tamano\n");:}
+            | FECHA_DE_CREACION DOS_PUNTOS FORMATO_FECHA:h
+                                                    {: documento.setFechaDeCreacion(h);System.out.printf("Fecha de creacion:\n"+h);:}
+            | HORA DOS_PUNTOS FORMATO_HORA:k
+                                                    {: documento.setHoraDeCreacion(k);System.out.printf("Hora de creacion:\n"+k);:};
+                                                  
