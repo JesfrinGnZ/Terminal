@@ -2,7 +2,7 @@
 
 package backend.analizadores;
 import java_cup.runtime.*;
-import static backendd.analizadores.sym.*;
+import static backendd.analizadores.sym.*ASDFASDFASD;
 
 %% //------------------>2da area<--------------------------    
 

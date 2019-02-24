@@ -5,21 +5,24 @@
  */
 package backend.manejoDeDatos;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  *
  * @author jesfrin
  */
 public class Documento {
-    
-    private String direccion, direccionDePadre, nombre,permisos,horaDeCreacion;
+
+    private String direccion, direccionDePadre, nombre, permisos;
     private boolean esFolder;
     private int tamano;
-    private Date fechaDeCreacion;
+    private LocalDate fechaDeCreacion;
+    private LocalTime horaDeCreacion;
     private DefaultMutableTreeNode nodo;
 
-    public Documento(String direccion, String direccionDePadre, String nombre, String permisos, boolean esFolder, int tamano, Date fechaDeCreacion, DefaultMutableTreeNode nodo) {
+    public Documento(String direccion, String direccionDePadre, String nombre, String permisos, boolean esFolder, int tamano, LocalDate fechaDeCreacion, DefaultMutableTreeNode nodo,LocalTime horaDeCreacion) {
         this.direccion = direccion;
         this.direccionDePadre = direccionDePadre;
         this.nombre = nombre;
@@ -28,16 +31,17 @@ public class Documento {
         this.tamano = tamano;
         this.fechaDeCreacion = fechaDeCreacion;
         this.nodo = nodo;
+        this.horaDeCreacion= horaDeCreacion;
     }
 
     public Documento(String direccion) {
         this.direccion = direccion;
     }
-    
-    public Documento(){
-        
+
+    public Documento() {
+
     }
-    
+
     //Getter and Setter
     public String getDireccion() {
         return direccion;
@@ -58,7 +62,6 @@ public class Documento {
     public String getNombre() {
         return nombre;
     }
-    
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -88,9 +91,10 @@ public class Documento {
         this.tamano = tamano;
     }
 
-    public Date getFechaDeCreacion() {
+    public LocalDate getFechaDeCreacion() {
         return fechaDeCreacion;
     }
+
 
     public void setFechaDeCreacion(String fechaDeCreacion) {
         String[] datosDeFecha = fechaDeCreacion.split("/");
@@ -98,8 +102,8 @@ public class Documento {
         dia=Integer.valueOf(datosDeFecha[0]);
         mes=Integer.valueOf(datosDeFecha[1]);
         anio=Integer.valueOf(datosDeFecha[2]);
-        this.fechaDeCreacion = new Date(anio, mes, dia);
-    }
+        this.fechaDeCreacion = LocalDate.of(anio, mes, dia);
+        }
 
     public DefaultMutableTreeNode getNodo() {
         return nodo;
@@ -109,14 +113,13 @@ public class Documento {
         this.nodo = nodo;
     }
 
-    public String getHoraDeCreacion() {
+    public LocalTime getHoraDeCreacion() {
         return horaDeCreacion;
     }
 
     public void setHoraDeCreacion(String horaDeCreacion) {
-        this.horaDeCreacion = horaDeCreacion;
+        String[] hora = horaDeCreacion.split(":");
+        this.horaDeCreacion=LocalTime.of(Integer.valueOf(hora[0]), Integer.valueOf(hora[1]));
     }
-    
-    
-    
+
 }

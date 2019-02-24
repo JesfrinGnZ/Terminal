@@ -212,6 +212,11 @@ public class TerminalGui extends javax.swing.JFrame {
         DefaultTreeModel model = (DefaultTreeModel) jTree1.getModel();
         return (DefaultMutableTreeNode) model.getRoot();
     }
+    
+    public void actualizarArbol(){
+        DefaultTreeModel model = (DefaultTreeModel) jTree1.getModel();
+        model.reload();
+    }
 
     //OPcion para obtener comando ingresado por el usuario
     public String obtenerInstruccion() {
@@ -224,14 +229,6 @@ public class TerminalGui extends javax.swing.JFrame {
     public void anadirTextoATerminal(String texto) {
         this.consolaTextArea.append("\n" + texto);
         this.filaDeInstruccion++;
-    }
-
-    //Instrucciones para ls y concatenacioens
-    public void escribirHijosDeNodo(ArrayList<String> nodos) {
-        for (String nodo : nodos) {
-            this.consolaTextArea.append(nodo);
-            filaDeInstruccion++;
-        }
     }
 
     //Instrucciones para cd
@@ -248,10 +245,22 @@ public class TerminalGui extends javax.swing.JFrame {
 
     //Instrucciones para ls
     public void mostrarNombresDeDocumentosContenidosEnDirectoirio(ArrayList<String> nodos) {
+        int n = 0;
+        this.filaDeInstruccion++;
+        this.consolaTextArea.append("\n");
         for (String nodo : nodos) {
-            this.consolaTextArea.append("\n" + nodo);
-            this.filaDeInstruccion++;
+            n++;
+            this.consolaTextArea.append(nodo + "\t");
+            if (n % 4 == 0) {
+                this.filaDeInstruccion++;
+                this.consolaTextArea.append("\n");
+            }
         }
+    }
+
+    public void mostrarInfoDeDocumentosContenidosEnDirectorio(Documento documento) {
+            this.consolaTextArea.append("\n"+documento.getPermisos()+"  "+documento.getTamano()+"  "+documento.getFechaDeCreacion().getMonth()+" "+documento.getFechaDeCreacion().getDayOfMonth()+"  "+documento.getHoraDeCreacion());
+            filaDeInstruccion++;
     }
 
 //    private void crearCarpeta() {
@@ -305,4 +314,14 @@ public class TerminalGui extends javax.swing.JFrame {
         this.nuevoManejador = nuevoManejador;
     }
 
+    public Documento getDocumentoActual() {
+        return documentoActual;
+    }
+
+    public void setDocumentoActual(Documento documentoActual) {
+        this.documentoActual = documentoActual;
+    }
+
+
+    
 }

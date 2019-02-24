@@ -6,6 +6,8 @@
 package backend.manejoDeDatos;
 
 import gui.Frame.TerminalGui;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -35,9 +37,9 @@ public class ManejadorDeArboles {
         String permisos = "drwx";
         boolean esFolder = true;
         int tamano = 0;
-        Date fechaDeCreacion = new Date(2019, 2, 17);
+        LocalDate fechaDeCreacion = LocalDate.of(2019, 2, 17);
         DefaultMutableTreeNode nodoRaiz = raiz;
-        Documento nuevoDoc = new Documento(direccion, direccionDePadre, nombre, permisos, esFolder, tamano, fechaDeCreacion, nodoRaiz);
+        Documento nuevoDoc = new Documento(direccion, direccionDePadre, nombre, permisos, esFolder, tamano, fechaDeCreacion, nodoRaiz,LocalTime.now());
         documentos.add(nuevoDoc);
     }
 
@@ -74,69 +76,70 @@ public class ManejadorDeArboles {
 
     }
 
-    //Operacion para pwd
-    public void escribirDireccion() {
-        this.miTerminal.anadirTextoATerminal(this.miTerminal.getDireccionActual());
-    }
-
-    //Operacion para cd
-    public void buscarDocumentoSegunDireccion(String direccion) {
-        boolean seEncontroElArchivo = false;
-        if (direccion.equals("cd")) {
-            this.miTerminal.cambiarDireccionEnTerminal(this.documentos.get(0));
-        } else {
-            if (!direccion.startsWith("/")) {//Comparacion si es direccion relativa
-                if (this.miTerminal.getDireccionActual().equals("/")) {
-                    direccion = this.miTerminal.getDireccionActual() + direccion;
-                    //this.miTerminal.setDireccionActual(this.miTerminal.getDireccionActual() + direccion);
-                } else {
-                    //this.miTerminal.setDireccionActual(this.miTerminal.getDireccionActual() + "/" + direccion);
-                    direccion = this.miTerminal.getDireccionActual() + "/" + direccion;
-                }
-            }
-
-            if (direccion.endsWith("/")) {//Comparacion si es direccion que termina con diagonal
-                direccion = direccion.substring(0, direccion.length() - 1);
-            }
-
-            for (Documento documento : documentos) {
-                if (documento.getDireccion().equals(direccion) && documento.esFolder()) {
-                    this.miTerminal.cambiarDireccionEnTerminal(documento);
-                    seEncontroElArchivo = true;
-                    break;
-                }
-            }
-            if (!seEncontroElArchivo) {
-                this.miTerminal.informarQueNoSeHEncontradoElDirectorio();
+    //-------------------------->Metodos auxiliares--------------------------
+    private String restructurarDireccion(String direccion) {
+        if (!direccion.startsWith("/")) {//Comparacion si es direccion relativa
+            if (this.miTerminal.getDireccionActual().equals("/")) {
+                direccion = this.miTerminal.getDireccionActual() + direccion;//Solo se anade la direccion /direccion
+            } else {
+                direccion = this.miTerminal.getDireccionActual() + "/" + direccion;//Se anade de la forma /direccionActual/direccion
             }
         }
-    }
-    
-    //Operaciones para ls
 
-    private DefaultMutableTreeNode buscarNodo(String direccion){
+        if (direccion.endsWith("/")) {//Comparacion si es direccion que termina con diagonal, y se elimina
+            direccion = direccion.substring(0, direccion.length() - 1);
+        }
+        return direccion;
+    }
+
+    //------------------------------>LS<-------------------------------------------
+    private DefaultMutableTreeNode buscarNodo(String direccion) {
         for (Documento documento : documentos) {
-            if(documento.getDireccion().equals(direccion)){
+            if (documento.getDireccion().equals(direccion)) {
                 return documento.getNodo();
             }
         }
         return null;
     }
-    
-    public void buscarHijosDeNodo(String direccion){
+    //ls solo
+
+    public void buscarHijosDeNodo(String direccion) {
         ArrayList<String> hijosDeCarpeta = new ArrayList<>();
         DefaultMutableTreeNode nodo;
-        if(direccion==null){
+        if (direccion == null) {
             nodo = buscarNodo(this.miTerminal.getDireccionActual());
-        }else{
+        } else {
+            direccion = restructurarDireccion(direccion);
             nodo = buscarNodo(direccion);
         }
         DefaultTreeModel modelo = new DefaultTreeModel(nodo);
-        int numeroDeHijos=modelo.getChildCount(nodo);
+        int numeroDeHijos = modelo.getChildCount(nodo);
         for (int i = 0; i < numeroDeHijos; i++) {
-            DefaultMutableTreeNode nodoHijo=(DefaultMutableTreeNode)modelo.getChild(nodo, i);
+            DefaultMutableTreeNode nodoHijo = (DefaultMutableTreeNode) modelo.getChild(nodo, i);
             hijosDeCarpeta.add(nodoHijo.toString());
         }
         this.miTerminal.mostrarNombresDeDocumentosContenidosEnDirectoirio(hijosDeCarpeta);
     }
+
+    public DefaultMutableTreeNode getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(DefaultMutableTreeNode raiz) {
+        this.raiz = raiz;
+    }
+
+    public ArrayList<Documento> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(ArrayList<Documento> documentos) {
+        this.documentos = documentos;
+    }
+
+    public TerminalGui getMiTerminal() {
+        return miTerminal;
+    }
+    
+    
 }

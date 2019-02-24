@@ -63,12 +63,16 @@ Identifier = [:jletterdigit:][:jletterdigit:]*
 
         "&&"    { return symbol(CONCATENACION);}
 
+        "-l"    {return symbol(MOSTRAR_ARCHIVOS_L);}
+
+        "-a"    {return symbol(MOSTRAR_ARCHIVOS_A);}
+ 
 	{Identifier}	{ return symbol(IDENTIFICADOR,yytext());}
 
-	["/"]({Identifier}(["/"]{Identifier})*)* ["/"]? { return symbol(FORMATO_DIRECCION_ABSOLUTA,yytext());}
+	(["/"]+{Identifier}["/"]*)+ { return symbol(FORMATO_DIRECCION_ABSOLUTA,yytext());}
 
-        {Identifier}((["/"]{Identifier})* ["/"]?)  { return symbol(FORMATO_DIRECCION__RELATIVA,yytext());}
-	
+        {Identifier}(["/"]+|(["/"]+{Identifier}["/"]*)+)  { return symbol(FORMATO_DIRECCION__RELATIVA,yytext());}
+	    
         {Identifier} { return symbol(IDENTIFICADOR,yytext());}
 
 	{WhiteSpace} 	{/* ignoramos */}
