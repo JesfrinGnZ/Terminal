@@ -16,10 +16,8 @@ import static backendd.analizadoresTerminal.sym.*;
 
 LineTerminator = \r|\n|\r\n
 WhiteSpace = {LineTerminator} | [ \t\f]
-DIGITO_NATURAL = [1-9]
-DIGITO = [0-9]
-Identifier = [:jletterdigit:][:jletterdigit:]*
-
+SignosEspeciales =["."|"@"|"#"|"+"|"-"|"_"]
+Identifier = ({SignosEspeciales}+|[:jletterdigit:]+)+
 
 %{
   StringBuilder string = new StringBuilder();
@@ -66,15 +64,15 @@ Identifier = [:jletterdigit:][:jletterdigit:]*
         "-l"    {return symbol(MOSTRAR_ARCHIVOS_L);}
 
         "-a"    {return symbol(MOSTRAR_ARCHIVOS_A);}
- 
+
+        "exit" {return symbol(EXIT);}
+
 	{Identifier}	{ return symbol(IDENTIFICADOR,yytext());}
 
 	(["/"]+{Identifier}["/"]*)+ { return symbol(FORMATO_DIRECCION_ABSOLUTA,yytext());}
 
         {Identifier}(["/"]+|(["/"]+{Identifier}["/"]*)+)  { return symbol(FORMATO_DIRECCION__RELATIVA,yytext());}
 	    
-        {Identifier} { return symbol(IDENTIFICADOR,yytext());}
-
 	{WhiteSpace} 	{/* ignoramos */}
 
 }

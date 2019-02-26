@@ -8,8 +8,6 @@ package backend.instruccionesParaComando;
 import backend.manejoDeDatos.Documento;
 import backend.manejoDeDatos.ManejadorDeArboles;
 import java.util.ArrayList;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -24,19 +22,12 @@ public class ManejadorLS {
     }
 
     public void buscarHijosDeNodoSinDireccionEspecifica() {//ls 
-        DefaultMutableTreeNode nodo = null;
         ArrayList<String> hijosDeCarpeta = new ArrayList<>();
+        String direccion=this.manejador.getMiTerminal().getDireccionActual();
         for (Documento documento : this.manejador.getDocumentos()) {
-            if (documento.getDireccion().equals(this.manejador.getMiTerminal().getDireccionActual())) {
-                nodo = documento.getNodo();
-                break;
+            if(documento.getDireccionDePadre().equals(direccion) && !documento.esOculto()){
+                hijosDeCarpeta.add(documento.getNombre());
             }
-        }
-        DefaultTreeModel modelo = new DefaultTreeModel(nodo);
-        int numeroDeHijos = modelo.getChildCount(nodo);
-        for (int i = 0; i < numeroDeHijos; i++) {
-            DefaultMutableTreeNode nodoHijo = (DefaultMutableTreeNode) modelo.getChild(nodo, i);
-            hijosDeCarpeta.add(nodoHijo.toString());
         }
         this.manejador.getMiTerminal().mostrarNombresDeDocumentosContenidosEnDirectoirio(hijosDeCarpeta);
     }
@@ -44,7 +35,7 @@ public class ManejadorLS {
     public void buscarY_MostrarInformacionDeHijosSinDireccionEspecifica() {//ls -l
         String direccionDePadre = this.manejador.getMiTerminal().getDireccionActual();
         for (Documento documento : this.manejador.getDocumentos()) {
-            if(documento.getDireccionDePadre().equals(direccionDePadre)){
+            if(documento.getDireccionDePadre().equals(direccionDePadre) && !documento.esOculto()){
                 this.manejador.getMiTerminal().mostrarInfoDeDocumentosContenidosEnDirectorio(documento);
             }
         }

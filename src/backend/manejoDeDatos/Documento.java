@@ -21,8 +21,12 @@ public class Documento {
     private LocalDate fechaDeCreacion;
     private LocalTime horaDeCreacion;
     private DefaultMutableTreeNode nodo;
+    private boolean esOculto;
+    private boolean tienePermisoDeLectura;
+    private boolean tienePermisoDeEscritura;
+    private boolean tienePermisoDeEjecucion;
 
-    public Documento(String direccion, String direccionDePadre, String nombre, String permisos, boolean esFolder, int tamano, LocalDate fechaDeCreacion, DefaultMutableTreeNode nodo,LocalTime horaDeCreacion) {
+    public Documento(String direccion, String direccionDePadre, String nombre, String permisos, boolean esFolder, int tamano, LocalDate fechaDeCreacion, DefaultMutableTreeNode nodo, LocalTime horaDeCreacion, boolean esOculto) {
         this.direccion = direccion;
         this.direccionDePadre = direccionDePadre;
         this.nombre = nombre;
@@ -31,7 +35,8 @@ public class Documento {
         this.tamano = tamano;
         this.fechaDeCreacion = fechaDeCreacion;
         this.nodo = nodo;
-        this.horaDeCreacion= horaDeCreacion;
+        this.horaDeCreacion = horaDeCreacion;
+        this.esOculto = esOculto;
     }
 
     public Documento(String direccion) {
@@ -73,6 +78,9 @@ public class Documento {
 
     public void setPermisos(String permisos) {
         this.permisos = permisos;
+        this.tienePermisoDeLectura = permisos.charAt(1) != '-';
+        this.tienePermisoDeEscritura = permisos.charAt(2) != '-';
+        this.tienePermisoDeEjecucion = permisos.charAt(3) != '-';
     }
 
     public boolean esFolder() {
@@ -95,15 +103,20 @@ public class Documento {
         return fechaDeCreacion;
     }
 
-
     public void setFechaDeCreacion(String fechaDeCreacion) {
         String[] datosDeFecha = fechaDeCreacion.split("/");
-        int dia,mes,anio;
-        dia=Integer.valueOf(datosDeFecha[0]);
-        mes=Integer.valueOf(datosDeFecha[1]);
-        anio=Integer.valueOf(datosDeFecha[2]);
+        int dia, mes, anio;
+        dia = Integer.valueOf(datosDeFecha[0]);
+        mes = Integer.valueOf(datosDeFecha[1]);
+        anio = Integer.valueOf(datosDeFecha[2]);
         this.fechaDeCreacion = LocalDate.of(anio, mes, dia);
-        }
+    }
+    
+    public void setFechaDeCreacionConFechaDeSistema(){
+        this.fechaDeCreacion=LocalDate.now();
+    }
+    
+    
 
     public DefaultMutableTreeNode getNodo() {
         return nodo;
@@ -119,7 +132,43 @@ public class Documento {
 
     public void setHoraDeCreacion(String horaDeCreacion) {
         String[] hora = horaDeCreacion.split(":");
-        this.horaDeCreacion=LocalTime.of(Integer.valueOf(hora[0]), Integer.valueOf(hora[1]));
+        this.horaDeCreacion = LocalTime.of(Integer.valueOf(hora[0]), Integer.valueOf(hora[1]));
+    }
+    
+    public void setHoraDeCreacionConHoraDelSistema(){
+        this.horaDeCreacion=LocalTime.now();
+    }
+
+    public boolean esOculto() {
+        return esOculto;
+    }
+
+    public void setEsOculto(boolean esOculto) {
+        this.esOculto = esOculto;
+    }
+
+    public boolean isTienePermisoDeLectura() {
+        return tienePermisoDeLectura;
+    }
+
+    public void setTienePermisoDeLectura(boolean tienePermisoDeLectura) {
+        this.tienePermisoDeLectura = tienePermisoDeLectura;
+    }
+
+    public boolean isTienePermisoDeEscritura() {
+        return tienePermisoDeEscritura;
+    }
+
+    public void setTienePermisoDeEscritura(boolean tienePermisoDeEscritura) {
+        this.tienePermisoDeEscritura = tienePermisoDeEscritura;
+    }
+
+    public boolean isTienePermisoDeEjecucion() {
+        return tienePermisoDeEjecucion;
+    }
+
+    public void setTienePermisoDeEjecucion(boolean tienePermisoDeEjecucion) {
+        this.tienePermisoDeEjecucion = tienePermisoDeEjecucion;
     }
 
 }

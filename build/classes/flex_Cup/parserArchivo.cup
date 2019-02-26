@@ -54,7 +54,7 @@ parser code {:
 
 /*--------------- 2da Area: Declaraciones -----------------------*/
 
-terminal String         DOS_PUNTOS,DIRECCION,DIRECCION_DE_PADRE,NOMBRE,PERMISOS,ES_FOLDER,TAMANO,FECHA_DE_CREACION,TRUE,FALSE,IDENTIFICADOR,FORMATO_DIRECCION,FORMATO_PERMISOS,FORMATO_FECHA,HORA,FORMATO_HORA;
+terminal String         DOS_PUNTOS,DIRECCION,DIRECCION_DE_PADRE,NOMBRE,PERMISOS,ES_FOLDER,TAMANO,FECHA_DE_CREACION,TRUE,FALSE,IDENTIFICADOR,FORMATO_DIRECCION,FORMATO_FECHA,HORA,FORMATO_HORA,OCULTO;
 terminal Integer        ENTERO;
 
 non terminal Object     inicio, expresiones, expresion; 
@@ -76,7 +76,7 @@ expresion ::= DIRECCION DOS_PUNTOS FORMATO_DIRECCION:a
                                                     documento.setNodo(nodo);
                                                     manejador.anadirNodoA_Arbol(documento.getDireccionDePadre(),documento.getNodo());
                                                     System.out.printf("ID\n");:}
-            | PERMISOS DOS_PUNTOS FORMATO_PERMISOS:d
+            | PERMISOS DOS_PUNTOS IDENTIFICADOR:d
                                                     {: documento.setPermisos(d);System.out.printf("Permisos\n");:}
             | ES_FOLDER DOS_PUNTOS TRUE
                                                     {: documento.setEsFolder(true);System.out.printf("Es folder verdadero\n");:}
@@ -87,5 +87,10 @@ expresion ::= DIRECCION DOS_PUNTOS FORMATO_DIRECCION:a
             | FECHA_DE_CREACION DOS_PUNTOS FORMATO_FECHA:h
                                                     {: documento.setFechaDeCreacion(h);System.out.printf("Fecha de creacion:\n"+h);:}
             | HORA DOS_PUNTOS FORMATO_HORA:k
-                                                    {: documento.setHoraDeCreacion(k);System.out.printf("Hora de creacion:\n"+k);:};
-                                                  
+                                                    {: documento.setHoraDeCreacion(k);System.out.printf("Hora de creacion:\n"+k);:}
+            |
+            OCULTO DOS_PUNTOS TRUE
+                                                    {:documento.setEsOculto(true);:}
+            |
+            OCULTO DOS_PUNTOS FALSE                                      
+                                                     {:documento.setEsOculto(false);:};   

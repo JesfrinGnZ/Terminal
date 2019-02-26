@@ -70,7 +70,7 @@ public class TerminalGui extends javax.swing.JFrame {
         consolaTextArea.setFont(new java.awt.Font("DejaVu Sans", 0, 15)); // NOI18N
         consolaTextArea.setForeground(new java.awt.Color(0, 153, 0));
         consolaTextArea.setRows(5);
-        consolaTextArea.setText("comandos:/@");
+        consolaTextArea.setText("comandos:/%");
         consolaTextArea.setCaretColor(java.awt.Color.red);
         consolaTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         consolaTextArea.addCaretListener(new javax.swing.event.CaretListener() {
@@ -115,7 +115,7 @@ public class TerminalGui extends javax.swing.JFrame {
 
         } else if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
             String instruccion = obtenerInstruccion();
-            if (filaDeCursor != filaDeInstruccion || this.consolaTextArea.getText().endsWith("@")) {
+            if (filaDeCursor != filaDeInstruccion || this.consolaTextArea.getText().endsWith("%")) {
                 evt.consume();
             } else {
                 try {
@@ -131,7 +131,7 @@ public class TerminalGui extends javax.swing.JFrame {
                 } finally {
                     this.filaDeInstruccion++;
                     //Agregueme esto y luego tome el enter
-                    this.consolaTextArea.append("\ncomandos:" + direccionActual + "@");
+                    this.consolaTextArea.append("\ncomandos:" + direccionActual + "%");
                     evt.consume();
                 }
             }
@@ -157,7 +157,7 @@ public class TerminalGui extends javax.swing.JFrame {
     }//GEN-LAST:event_consolaTextAreaKeyReleased
 
     private void consolaTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_consolaTextAreaKeyTyped
-        if (filaDeCursor != filaDeInstruccion || evt.getKeyChar() == '@') {
+        if (filaDeCursor != filaDeInstruccion || evt.getKeyChar() == '%') {
             evt.consume();
         }
     }//GEN-LAST:event_consolaTextAreaKeyTyped
@@ -212,8 +212,8 @@ public class TerminalGui extends javax.swing.JFrame {
         DefaultTreeModel model = (DefaultTreeModel) jTree1.getModel();
         return (DefaultMutableTreeNode) model.getRoot();
     }
-    
-    public void actualizarArbol(){
+
+    public void actualizarArbol() {
         DefaultTreeModel model = (DefaultTreeModel) jTree1.getModel();
         model.reload();
     }
@@ -221,7 +221,7 @@ public class TerminalGui extends javax.swing.JFrame {
     //OPcion para obtener comando ingresado por el usuario
     public String obtenerInstruccion() {
         String texto = this.consolaTextArea.getText();
-        String[] instrucciones = texto.split("@");
+        String[] instrucciones = texto.split("%");
         return instrucciones[instrucciones.length - 1];
     }
 
@@ -259,8 +259,20 @@ public class TerminalGui extends javax.swing.JFrame {
     }
 
     public void mostrarInfoDeDocumentosContenidosEnDirectorio(Documento documento) {
-            this.consolaTextArea.append("\n"+documento.getPermisos()+"  "+documento.getTamano()+"  "+documento.getFechaDeCreacion().getMonth()+" "+documento.getFechaDeCreacion().getDayOfMonth()+"  "+documento.getHoraDeCreacion());
-            filaDeInstruccion++;
+        this.consolaTextArea.append("\n" + documento.getPermisos() + "  " + documento.getTamano() + "  " + documento.getFechaDeCreacion().getMonth() + " " + documento.getFechaDeCreacion().getDayOfMonth() + "  " + documento.getHoraDeCreacion());
+        filaDeInstruccion++;
+    }
+
+    //Instrucciones para mkdir
+    public void informarQueLaCarpetaYaExiste(String directorio) {
+        this.consolaTextArea.append("\nmkdir:No se puede crear el directorio <"+directorio+"> ya existe");
+        filaDeInstruccion++;
+    }
+
+    //Instrucciones para indicar un error
+    public void informarDeUnError(String cadena) {
+        this.consolaTextArea.append("\nExistio un error sintactico en la instruccion:" + cadena);
+        this.filaDeInstruccion++;
     }
 
 //    private void crearCarpeta() {
@@ -322,6 +334,4 @@ public class TerminalGui extends javax.swing.JFrame {
         this.documentoActual = documentoActual;
     }
 
-
-    
 }

@@ -9,7 +9,6 @@ import gui.Frame.TerminalGui;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -28,18 +27,19 @@ public class ManejadorDeArboles {
         this.raiz = this.miTerminal.llamarRaizDeArbol();
         this.documentos = new ArrayList<>();
         crearDocumentoRaiz();
+        
     }
 
     private void crearDocumentoRaiz() {
         String direccion = "/";
-        String direccionDePadre = "/";
+        String direccionDePadre = "@";
         String nombre = "/";
         String permisos = "drwx";
         boolean esFolder = true;
         int tamano = 0;
         LocalDate fechaDeCreacion = LocalDate.of(2019, 2, 17);
         DefaultMutableTreeNode nodoRaiz = raiz;
-        Documento nuevoDoc = new Documento(direccion, direccionDePadre, nombre, permisos, esFolder, tamano, fechaDeCreacion, nodoRaiz,LocalTime.now());
+        Documento nuevoDoc = new Documento(direccion, direccionDePadre, nombre, permisos, esFolder, tamano, fechaDeCreacion, nodoRaiz,LocalTime.now(),false);
         documentos.add(nuevoDoc);
     }
 

@@ -18,7 +18,8 @@ LineTerminator = \r|\n|\r\n
 WhiteSpace = {LineTerminator} | [ \t\f]
 DIGITO_NATURAL = [1-9]
 DIGITO = [0-9]
-Identifier = [:jletterdigit:][:jletterdigit:]*
+SignosEspeciales =["."|"@"|"#"|"+"|"-"|"_"]
+Identifier = ({SignosEspeciales}+|[:jletterdigit:]+)+
 
 
 %{
@@ -63,8 +64,10 @@ Identifier = [:jletterdigit:][:jletterdigit:]*
 
         "hora"                  { return symbol(HORA);}
         
-        {DIGITO}{DIGITO}(":"){DIGITO}{DIGITO} {return symbol(FORMATO_HORA,yytext());}
+        "oculto"                { return symbol(OCULTO);}
 
+        {DIGITO}{DIGITO}(":"){DIGITO}{DIGITO} {return symbol(FORMATO_HORA,yytext());}
+        
         {DIGITO}{DIGITO}*["/"]{DIGITO}{DIGITO}*["/"]{DIGITO}{DIGITO}*	{ return symbol(FORMATO_FECHA,yytext());}	
 
 	{DIGITO_NATURAL}({DIGITO})* { return symbol(ENTERO,new Integer(yytext()));}
@@ -72,8 +75,6 @@ Identifier = [:jletterdigit:][:jletterdigit:]*
 	{Identifier}	{ return symbol(IDENTIFICADOR,yytext());}
 
 	["/"]({Identifier}(["/"]{Identifier})*)*  { return symbol(FORMATO_DIRECCION,yytext());}
-
-	["-"|"d"]["-"|"r"]["-"|"w"]["-"|"x"]	{return symbol(FORMATO_PERMISOS,yytext());} 
 
 	
 	{WhiteSpace} 	{/* ignoramos */}

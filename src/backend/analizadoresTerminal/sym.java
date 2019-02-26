@@ -8,6 +8,7 @@ package backend.analizadoresTerminal;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
+  public static final int EXIT = 18;
   public static final int LS = 4;
   public static final int CHMOD = 11;
   public static final int CP = 8;
@@ -44,7 +45,8 @@ public class sym {
   "CONCATENACION",
   "IDENTIFICADOR",
   "MOSTRAR_ARCHIVOS_L",
-  "MOSTRAR_ARCHIVOS_A"
+  "MOSTRAR_ARCHIVOS_A",
+  "EXIT"
   };
 }
 

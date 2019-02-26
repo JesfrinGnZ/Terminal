@@ -65,7 +65,6 @@ public class ManejadorCD {
     }
 
     public String manejarDireccionId(String direccion) {
-        System.out.println("DIRECCION:::" + manejador.getMiTerminal().getDireccionActual() + "/" + direccion);
         if (manejador.getMiTerminal().getDireccionActual().equals("/")) {
             return manejador.getMiTerminal().getDireccionActual() + direccion;
         } else {

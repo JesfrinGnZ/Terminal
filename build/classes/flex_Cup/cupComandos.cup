@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
 import backend.manejoDeDatos.*;
 import backend.instruccionesParaComando.*;
+import backend.archivos.*;
 
 
 
@@ -20,6 +21,7 @@ parser code {:
     private ManejadorPWD manejadorPwd;
     private ManejadorLS manejadorLs;
     private ManejadorTouch manejadorTouch;
+    private ManejadorMKDIR manejadorMkdir;
 	// Connect this parser to a scanner!
 	public parser(AnalizadorLexicoTerminal lex,ManejadorDeArboles manejador) {
 		super(lex);
@@ -28,26 +30,24 @@ parser code {:
                 manejadorPwd = new ManejadorPWD(this.manejador);
                 manejadorLs = new ManejadorLS(this.manejador);
                 manejadorTouch = new ManejadorTouch(this.manejador);
+                manejadorMkdir = new ManejadorMKDIR(this.manejador);
 	}
 
     //Metodo al que se llama automaticamente ante algun error sintactico
     public void syntax_error(Symbol s)
     {        
         String lexema = s.value.toString();
-        int fila = s.right;
-        int columna = s.left;
-        
-        System.out.println("!!!!!!! Error Sintactico Recuperado !!!!!!!");
-        System.out.println("\t\tLexema: "+lexema);
-        System.out.println("\t\tFila: "+fila);
-        System.out.println("\t\tColumna: "+columna);
+        manejador.getMiTerminal().informarDeUnError(lexema);
         
     }
 
     //Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
-    {        
-        String lexema = s.value.toString();
+    {       
+        System.out.println("!!!!!!! Error Sintactico, Panic Mode !!!!!!! ");
+ 
+/*        
+String lexema = s.value.toString();
         int fila = s.right;
         int columna = s.left;
         
@@ -55,64 +55,100 @@ parser code {:
         System.out.println("\t\tLexema: "+lexema);
         System.out.println("\t\tFila: "+fila);
         System.out.println("\t\tColumna: "+columna);
-     
+*/     
     }
 
 :}
 
 /*--------------- 2da Area: Declaraciones -----------------------*/
 
-terminal String         CD,PWD,LS,TOUCH,MKDIR,MV,CP,RM,RMDIR,CHMOD,FORMATO_DIRECCION_ABSOLUTA,FORMATO_DIRECCION__RELATIVA,CONCATENACION,IDENTIFICADOR,MOSTRAR_ARCHIVOS_L,MOSTRAR_ARCHIVOS_A;
+terminal String         CD,PWD,LS,TOUCH,MKDIR,MV,CP,RM,RMDIR,CHMOD,FORMATO_DIRECCION_ABSOLUTA,FORMATO_DIRECCION__RELATIVA,CONCATENACION,IDENTIFICADOR,MOSTRAR_ARCHIVOS_L,MOSTRAR_ARCHIVOS_A,EXIT;
 
-non terminal Object     expresiones, expresion,variosId,otrosId; 
+non terminal Object     expresiones, expresion,nombresDeArchivos,otrosNombresDeArchivos,variosIdCarpeta,otrosIdCarpeta; 
 /*--------------- 3ra Area: Reglas Semanticas -----------------------*/
 
 start with expresiones;
 
+expresiones ::= EXIT
+                   {:EscritorDeArchivo.escribirEnArchivo("/home/jesfrin/Documentos/Textos/Folders",manejador);:};
+
 expresiones ::= expresion CONCATENACION expresiones | expresion;
 
 expresion ::=   CD
-                {:manejadorCd.buscarDireccion(null);:}
+                        {:manejadorCd.buscarDireccion(null);:}
                 |
                 CD FORMATO_DIRECCION_ABSOLUTA:a
-                {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionAbsoluta(a));System.out.printf("Direccion Absoluta:%s\n",a);:}
+                        {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionAbsoluta(a));System.out.printf("Direccion Absoluta:%s\n",a);:}
                 |
                 CD FORMATO_DIRECCION__RELATIVA:b                                     
-                                                    {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionRelativa(b));System.out.printf("Direccion Relativa:%s\n",b);:}
-                                                    |
+                        {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionRelativa(b));System.out.printf("Direccion Relativa:%s\n",b);:}
+                |
                 CD IDENTIFICADOR:c
-                                                    {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionId(c));System.out.printf("Direccion Relativa:%s\n",c);:}
-                                                    |
-                PWD                                  
-                                                    {:manejadorPwd.escribirDireccion();:}
-                                                    |
-                LS
-                                                    {:manejadorLs.buscarHijosDeNodoSinDireccionEspecifica();:}
-                                                    |
+                        {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionId(c));System.out.printf("Direccion Relativa:%s\n",c);:};
+
+expresion ::=   PWD                                  
+                        {:manejadorPwd.escribirDireccion();:};
+                                                    
+expresion ::=   LS
+                        {:manejadorLs.buscarHijosDeNodoSinDireccionEspecifica();:}
+                |
                 LS MOSTRAR_ARCHIVOS_L               
-                                                    {:manejadorLs.buscarY_MostrarInformacionDeHijosSinDireccionEspecifica();:}
-                                                    |
+                        {:manejadorLs.buscarY_MostrarInformacionDeHijosSinDireccionEspecifica();:}
+                |
                 LS MOSTRAR_ARCHIVOS_A               
-                                                    {::}
-                                                    |
+                        {::}
+                |
                 LS  FORMATO_DIRECCION_ABSOLUTA:d
-                                                    {:manejador.buscarHijosDeNodo(d);:}
-                                                    |
+                        {:manejador.buscarHijosDeNodo(d);:}
+                |
                 LS  FORMATO_DIRECCION__RELATIVA:f 
-                                                    {:manejador.buscarHijosDeNodo(f);:}
-                                                    |
+                        {:manejador.buscarHijosDeNodo(f);:}
+                |
                 LS  IDENTIFICADOR:g
-                                                    {:manejador.buscarHijosDeNodo(g);:};
+                        {:manejador.buscarHijosDeNodo(g);:};
 
+//------------------------->TOUCH<----------------------------
 expresion ::=   TOUCH IDENTIFICADOR:h
-                                                    {:manejadorTouch.crearArchivos(h);System.out.printf("Nombre de archivo:%s",h);:}
-                                                    |
-                TOUCH variosId;
+                          {:manejadorTouch.crearArchivosSoloConId(h);System.out.printf("Nombre de archivo:%s",h);:}
+                |
+                TOUCH FORMATO_DIRECCION__RELATIVA:b
+                            {::}
+                |
+                TOUCH FORMATO_DIRECCION_ABSOLUTA:d
+                            {::}
+                |
+                TOUCH nombresDeArchivos
+                            {::};
 
 
-variosId ::= IDENTIFICADOR:k otrosId
-                                    {:manejadorTouch.crearArchivos(k);System.out.printf("Nombre de archivo:%s",k);:};
+nombresDeArchivos ::= IDENTIFICADOR:k otrosNombresDeArchivos
+                            {:manejadorTouch.crearArchivosSoloConId(k);System.out.printf("Nombre de archivo:%s",k);:}
+                    |
+                   FORMATO_DIRECCION__RELATIVA:b otrosNombresDeArchivos
+                            {::}
+                    |
+                   FORMATO_DIRECCION_ABSOLUTA:d otrosNombresDeArchivos
+                            {::};
+                                        
+                                    
+otrosNombresDeArchivos ::= nombresDeArchivos|
+                            IDENTIFICADOR:j
+                                    {:manejadorTouch.crearArchivosSoloConId(j);System.out.printf("Nombre de archivo:%s",j);:}
+                            |
+                            FORMATO_DIRECCION__RELATIVA:b
+                                    {::}
+                            |
+                            FORMATO_DIRECCION_ABSOLUTA:d
+                                    {::};
 
-otrosId ::= variosId|IDENTIFICADOR:j {:manejadorTouch.crearArchivos(j);System.out.printf("Nombre de archivo:%s",j);:};   
-
-                                   
+//--------------------------->Mkdir<---------------------
+expresion ::=   MKDIR IDENTIFICADOR:h
+                          {:manejadorMkdir.crearDirectorioSoloConId(h);System.out.printf("Nombre de archivo:%s",h);:}
+                |
+                MKDIR FORMATO_DIRECCION__RELATIVA:b
+                            {::}
+                |
+                MKDIR FORMATO_DIRECCION_ABSOLUTA:d
+                           {::};
+                
+                

@@ -11,12 +11,12 @@ public class sym {
   public static final int DIRECCION = 3;
   public static final int FECHA_DE_CREACION = 9;
   public static final int FORMATO_DIRECCION = 13;
-  public static final int FORMATO_PERMISOS = 14;
   public static final int ES_FOLDER = 7;
   public static final int TRUE = 10;
   public static final int PERMISOS = 6;
   public static final int DOS_PUNTOS = 2;
-  public static final int FORMATO_FECHA = 15;
+  public static final int OCULTO = 17;
+  public static final int FORMATO_FECHA = 14;
   public static final int NOMBRE = 5;
   public static final int TAMANO = 8;
   public static final int EOF = 0;
@@ -24,9 +24,9 @@ public class sym {
   public static final int error = 1;
   public static final int IDENTIFICADOR = 12;
   public static final int ENTERO = 18;
-  public static final int FORMATO_HORA = 17;
   public static final int DIRECCION_DE_PADRE = 4;
-  public static final int HORA = 16;
+  public static final int FORMATO_HORA = 16;
+  public static final int HORA = 15;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -42,10 +42,10 @@ public class sym {
   "FALSE",
   "IDENTIFICADOR",
   "FORMATO_DIRECCION",
-  "FORMATO_PERMISOS",
   "FORMATO_FECHA",
   "HORA",
   "FORMATO_HORA",
+  "OCULTO",
   "ENTERO"
   };
 }
