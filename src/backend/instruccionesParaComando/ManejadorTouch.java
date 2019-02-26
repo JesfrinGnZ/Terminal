@@ -26,7 +26,7 @@ public class ManejadorTouch {
 
     public boolean buscarSiArchivoYaExiste(String nombreDeArchivo, String direccionActual) {
         for (Documento documento : this.manejador.getDocumentos()) {
-            if (documento.getDireccionDePadre().equals(direccionActual)) {
+            if (documento.getDireccionDePadre().equals(direccionActual) && documento.getNombre().equals(nombreDeArchivo)) {
                 documento.setHoraDeCreacionConHoraDelSistema();
                 documento.setFechaDeCreacionConFechaDeSistema();
                 return true;
