@@ -259,7 +259,7 @@ public class TerminalGui extends javax.swing.JFrame {
     }
 
     public void mostrarInfoDeDocumentosContenidosEnDirectorio(Documento documento) {
-        this.consolaTextArea.append("\n" + documento.getPermisos() + "  " + documento.getTamano() + "  " + documento.getFechaDeCreacion().getMonth() + " " + documento.getFechaDeCreacion().getDayOfMonth() + "  " + documento.getHoraDeCreacion());
+        this.consolaTextArea.append("\n" + documento.getPermisos() + "  " + documento.getTamano() + "  " + documento.getFechaDeCreacion().getMonth() + " " + documento.getFechaDeCreacion().getDayOfMonth() + "  " + documento.getHoraDeCreacion()+" "+documento.getNombre());
         filaDeInstruccion++;
     }
 

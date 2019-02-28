@@ -21,22 +21,57 @@ public class ManejadorLS {
         this.manejador = manejador;
     }
 
-    public void buscarHijosDeNodoSinDireccionEspecifica() {//ls 
+    public void buscarHijosDeNodoSinDireccionEspecifica(String direccionDePadre) {//ls 
         ArrayList<String> hijosDeCarpeta = new ArrayList<>();
-        String direccion=this.manejador.getMiTerminal().getDireccionActual();
         for (Documento documento : this.manejador.getDocumentos()) {
-            if(documento.getDireccionDePadre().equals(direccion) && !documento.esOculto()){
+            if (documento.getDireccionDePadre().equals(direccionDePadre) && !documento.esOculto()) {
                 hijosDeCarpeta.add(documento.getNombre());
             }
         }
         this.manejador.getMiTerminal().mostrarNombresDeDocumentosContenidosEnDirectoirio(hijosDeCarpeta);
     }
 
-    public void buscarY_MostrarInformacionDeHijosSinDireccionEspecifica() {//ls -l
-        String direccionDePadre = this.manejador.getMiTerminal().getDireccionActual();
+    public void buscarY_MostrarInformacionDeHijosSinDireccionEspecifica(String direccionDePadre) {//ls -l
         for (Documento documento : this.manejador.getDocumentos()) {
-            if(documento.getDireccionDePadre().equals(direccionDePadre) && !documento.esOculto()){
+            if (documento.getDireccionDePadre().equals(direccionDePadre) && !documento.esOculto()) {
                 this.manejador.getMiTerminal().mostrarInfoDeDocumentosContenidosEnDirectorio(documento);
+            }
+        }
+    }
+
+    public void buscarY_MostrarInfoDeHijos(String direccionDePadre) {//ls -la|al
+        for (Documento documento : this.manejador.getDocumentos()) {
+            if (documento.getDireccionDePadre().equals(direccionDePadre)) {
+                this.manejador.getMiTerminal().mostrarInfoDeDocumentosContenidosEnDirectorio(documento);
+            }
+        }
+    }
+
+    public void buscarHijosSinDireccionEspecificaOcultos(String direccionDePadre) {//ls -a
+        ArrayList<String> hijosDeCarpeta = new ArrayList<>();
+        for (Documento documento : this.manejador.getDocumentos()) {
+            if (documento.getDireccionDePadre().equals(direccionDePadre)) {
+                hijosDeCarpeta.add(documento.getNombre());
+            }
+        }
+        this.manejador.getMiTerminal().mostrarNombresDeDocumentosContenidosEnDirectoirio(hijosDeCarpeta);
+    }
+
+    public void buscarHijosConDireccion(String direccion, ManejadorCD manejadorCd, String tipoDeComando) {//Se le manda una direccion echa y derecha
+        if (manejadorCd.buscarDireccion(direccion)) {//Si la direccion se ha encontrado se procede , y si no pues ya mandara mismo cd que no existe la direccion
+            switch (tipoDeComando) {
+                case "ls":
+                    buscarHijosDeNodoSinDireccionEspecifica(direccion);
+                    break;
+                case "ls -l":
+                    buscarY_MostrarInformacionDeHijosSinDireccionEspecifica(direccion);
+                    break;
+                case "ls -a":
+                    buscarHijosSinDireccionEspecificaOcultos(direccion);
+                    break;
+                default :
+                    buscarY_MostrarInfoDeHijos(direccion);
+                    break;
             }
         }
     }

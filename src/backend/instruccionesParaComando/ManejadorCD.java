@@ -20,55 +20,20 @@ public class ManejadorCD {
         this.manejador = manejador;
     }
 
-    public void buscarDireccion(String direccion) {
-        if (direccion == null) {
+    public boolean buscarDireccion(String direccion) {
+        if (direccion == null) {//Vuelva a raiz
             this.manejador.getMiTerminal().cambiarDireccionEnTerminal(this.manejador.getDocumentos().get(0));
-        } else {
-            boolean seEncontroElArchivo = false;
+            return true;
+        } else {//Busque la direccion que se le ha especificado
             for (Documento documento : manejador.getDocumentos()) {
                 if (documento.getDireccion().equals(direccion) && documento.esFolder()) {
                     manejador.getMiTerminal().cambiarDireccionEnTerminal(documento);
-                    seEncontroElArchivo = true;
-                    break;
+                    return true;
+
                 }
             }
-            if (!seEncontroElArchivo) {
-                manejador.getMiTerminal().informarQueNoSeHEncontradoElDirectorio();
-            }
-        }
-
-    }
-
-    private String restructurarDireccion(String direccion) {//Rewstructura la direccion
-        String cadena = "";
-        String[] n = direccion.split("/");
-        System.out.println(n.length);
-        for (String string : n) {
-            if (string.length() > 0) {
-                cadena += "/" + string;
-            }
-        }
-        return cadena;
-    }
-
-    public String manejarDireccionAbsoluta(String direccion) {
-        return restructurarDireccion(direccion);
-    }
-
-    public String manejarDireccionRelativa(String direccion) {
-        direccion = restructurarDireccion(direccion);//Si es raiz no se debe agru
-        if (manejador.getMiTerminal().getDireccionActual().equals("/")) {
-            return direccion;
-        } else {
-            return manejador.getMiTerminal().getDireccionActual() + direccion;
-        }
-    }
-
-    public String manejarDireccionId(String direccion) {
-        if (manejador.getMiTerminal().getDireccionActual().equals("/")) {
-            return manejador.getMiTerminal().getDireccionActual() + direccion;
-        } else {
-            return manejador.getMiTerminal().getDireccionActual() + "/" + direccion;
+            manejador.getMiTerminal().informarQueNoSeHEncontradoElDirectorio();
+            return false;
         }
 
     }

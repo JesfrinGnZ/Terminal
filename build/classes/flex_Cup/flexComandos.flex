@@ -65,6 +65,10 @@ Identifier = ({SignosEspeciales}+|[:jletterdigit:]+)+
 
         "-a"    {return symbol(MOSTRAR_ARCHIVOS_A);}
 
+        "-la"   {return symbol(MOSTRAR_ARCHIVOS_LA);}
+
+        "-al"   {return symbol(MOSTRAR_ARCHIVOS_AL);}
+
         "exit" {return symbol(EXIT);}
 
 	{Identifier}	{ return symbol(IDENTIFICADOR,yytext());}

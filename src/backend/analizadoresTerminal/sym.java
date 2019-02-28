@@ -22,6 +22,8 @@ public class sym {
   public static final int FORMATO_DIRECCION_ABSOLUTA = 12;
   public static final int PWD = 3;
   public static final int EOF = 0;
+  public static final int MOSTRAR_ARCHIVOS_LA = 19;
+  public static final int MOSTRAR_ARCHIVOS_AL = 20;
   public static final int error = 1;
   public static final int IDENTIFICADOR = 15;
   public static final int RMDIR = 10;
@@ -46,7 +48,9 @@ public class sym {
   "IDENTIFICADOR",
   "MOSTRAR_ARCHIVOS_L",
   "MOSTRAR_ARCHIVOS_A",
-  "EXIT"
+  "EXIT",
+  "MOSTRAR_ARCHIVOS_LA",
+  "MOSTRAR_ARCHIVOS_AL"
   };
 }
 

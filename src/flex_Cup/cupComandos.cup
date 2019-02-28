@@ -17,6 +17,7 @@ parser code {:
     private ManejadorDeArboles manejador;
     private ArrayList<DefaultMutableTreeNode> listaDeNodos = new ArrayList<>();
     //-------------------->MANEJADORES<--------------------------------------
+    private ManejadorDeDirecciones manejadorDirecciones;
     private ManejadorCD manejadorCd;
     private ManejadorPWD manejadorPwd;
     private ManejadorLS manejadorLs;
@@ -31,6 +32,7 @@ parser code {:
                 manejadorLs = new ManejadorLS(this.manejador);
                 manejadorTouch = new ManejadorTouch(this.manejador);
                 manejadorMkdir = new ManejadorMKDIR(this.manejador);
+                manejadorDirecciones = new ManejadorDeDirecciones(this.manejador);
 	}
 
     //Metodo al que se llama automaticamente ante algun error sintactico
@@ -62,7 +64,7 @@ String lexema = s.value.toString();
 
 /*--------------- 2da Area: Declaraciones -----------------------*/
 
-terminal String         CD,PWD,LS,TOUCH,MKDIR,MV,CP,RM,RMDIR,CHMOD,FORMATO_DIRECCION_ABSOLUTA,FORMATO_DIRECCION__RELATIVA,CONCATENACION,IDENTIFICADOR,MOSTRAR_ARCHIVOS_L,MOSTRAR_ARCHIVOS_A,EXIT;
+terminal String         CD,PWD,LS,TOUCH,MKDIR,MV,CP,RM,RMDIR,CHMOD,FORMATO_DIRECCION_ABSOLUTA,FORMATO_DIRECCION__RELATIVA,CONCATENACION,IDENTIFICADOR,MOSTRAR_ARCHIVOS_L,MOSTRAR_ARCHIVOS_A,EXIT,MOSTRAR_ARCHIVOS_LA,MOSTRAR_ARCHIVOS_AL;
 
 non terminal Object     expresiones, expresion,nombresDeArchivos,otrosNombresDeArchivos,variosIdCarpeta,otrosIdCarpeta; 
 /*--------------- 3ra Area: Reglas Semanticas -----------------------*/
@@ -78,34 +80,40 @@ expresion ::=   CD
                         {:manejadorCd.buscarDireccion(null);:}
                 |
                 CD FORMATO_DIRECCION_ABSOLUTA:a
-                        {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionAbsoluta(a));System.out.printf("Direccion Absoluta:%s\n",a);:}
+                        {:manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionAbsoluta(a));System.out.printf("Direccion Absoluta:%s\n",a);:}
                 |
                 CD FORMATO_DIRECCION__RELATIVA:b                                     
-                        {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionRelativa(b));System.out.printf("Direccion Relativa:%s\n",b);:}
+                        {:manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionRelativa(b));System.out.printf("Direccion Relativa:%s\n",b);:}
                 |
                 CD IDENTIFICADOR:c
-                        {:manejadorCd.buscarDireccion(manejadorCd.manejarDireccionId(c));System.out.printf("Direccion Relativa:%s\n",c);:};
+                        {:manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionId(c));System.out.printf("Direccion Relativa:%s\n",c);:};
 
 expresion ::=   PWD                                  
                         {:manejadorPwd.escribirDireccion();:};
                                                     
 expresion ::=   LS
-                        {:manejadorLs.buscarHijosDeNodoSinDireccionEspecifica();:}
+                        {:manejadorLs.buscarHijosDeNodoSinDireccionEspecifica(manejador.getMiTerminal().getDireccionActual());:}
                 |
                 LS MOSTRAR_ARCHIVOS_L               
-                        {:manejadorLs.buscarY_MostrarInformacionDeHijosSinDireccionEspecifica();:}
+                        {:manejadorLs.buscarY_MostrarInformacionDeHijosSinDireccionEspecifica(manejador.getMiTerminal().getDireccionActual());:}
                 |
                 LS MOSTRAR_ARCHIVOS_A               
-                        {::}
+                        {:manejadorLs.buscarHijosSinDireccionEspecificaOcultos(manejador.getMiTerminal().getDireccionActual());:}
+                |
+                LS MOSTRAR_ARCHIVOS_LA
+                        {:manejadorLs.buscarY_MostrarInfoDeHijos(manejador.getMiTerminal().getDireccionActual());:}
+                |
+                LS MOSTRAR_ARCHIVOS_AL
+                        {:manejadorLs.buscarY_MostrarInfoDeHijos(manejador.getMiTerminal().getDireccionActual());:}
                 |
                 LS  FORMATO_DIRECCION_ABSOLUTA:d
-                        {:manejador.buscarHijosDeNodo(d);:}
+                        {:manejadorLs.buscarHijosConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd,"ls");:}
                 |
                 LS  FORMATO_DIRECCION__RELATIVA:f 
-                        {:manejador.buscarHijosDeNodo(f);:}
+                        {:manejadorLs.buscarHijosConDireccion(manejadorDirecciones.manejarDireccionRelativa(f),manejadorCd,"ls");;:}
                 |
                 LS  IDENTIFICADOR:g
-                        {:manejador.buscarHijosDeNodo(g);:};
+                        {:manejadorLs.buscarHijosConDireccion(manejadorDirecciones.manejarDireccionId(g),manejadorCd,"ls");;:};
 
 //------------------------->TOUCH<----------------------------
 expresion ::=   TOUCH IDENTIFICADOR:h

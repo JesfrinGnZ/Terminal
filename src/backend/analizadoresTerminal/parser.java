@@ -36,16 +36,16 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\035\000\002\002\004\000\002\002\003\000\002\002" +
+    "\000\037\000\002\002\004\000\002\002\003\000\002\002" +
     "\005\000\002\002\003\000\002\003\003\000\002\003\004" +
     "\000\002\003\004\000\002\003\004\000\002\003\003\000" +
     "\002\003\003\000\002\003\004\000\002\003\004\000\002" +
     "\003\004\000\002\003\004\000\002\003\004\000\002\003" +
     "\004\000\002\003\004\000\002\003\004\000\002\003\004" +
-    "\000\002\004\004\000\002\004\004\000\002\004\004\000" +
-    "\002\005\003\000\002\005\003\000\002\005\003\000\002" +
-    "\005\003\000\002\003\004\000\002\003\004\000\002\003" +
-    "\004" });
+    "\000\002\003\004\000\002\003\004\000\002\004\004\000" +
+    "\002\004\004\000\002\004\004\000\002\005\003\000\002" +
+    "\005\003\000\002\005\003\000\002\005\003\000\002\003" +
+    "\004\000\002\003\004\000\002\003\004" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -53,33 +53,34 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\042\000\016\004\013\005\006\006\005\007\012\010" +
-    "\007\024\010\001\002\000\004\002\044\001\002\000\020" +
-    "\002\ufff8\016\040\017\041\020\ufff8\021\037\022\043\023" +
-    "\042\001\002\000\006\002\ufff9\020\ufff9\001\002\000\010" +
-    "\016\035\017\036\021\034\001\002\000\004\002\000\001" +
-    "\002\000\006\002\ufffe\020\032\001\002\000\010\016\021" +
-    "\017\022\021\020\001\002\000\014\002\ufffd\016\015\017" +
-    "\016\020\ufffd\021\014\001\002\000\006\002\ufffa\020\ufffa" +
-    "\001\002\000\006\002\ufffc\020\ufffc\001\002\000\006\002" +
-    "\ufffb\020\ufffb\001\002\000\006\002\uffef\020\uffef\001\002" +
-    "\000\014\002\ufff2\016\026\017\027\020\ufff2\021\025\001" +
-    "\002\000\014\002\ufff0\016\026\017\027\020\ufff0\021\025" +
-    "\001\002\000\014\002\ufff1\016\026\017\027\020\ufff1\021" +
-    "\025\001\002\000\006\002\uffeb\020\uffeb\001\002\000\006" +
-    "\002\uffed\020\uffed\001\002\000\014\002\uffea\016\026\017" +
-    "\027\020\uffea\021\025\001\002\000\014\002\uffe8\016\026" +
-    "\017\027\020\uffe8\021\025\001\002\000\014\002\uffe9\016" +
-    "\026\017\027\020\uffe9\021\025\001\002\000\006\002\uffec" +
-    "\020\uffec\001\002\000\006\002\uffee\020\uffee\001\002\000" +
-    "\016\004\013\005\006\006\005\007\012\010\007\024\010" +
-    "\001\002\000\004\002\uffff\001\002\000\006\002\uffe7\020" +
-    "\uffe7\001\002\000\006\002\uffe5\020\uffe5\001\002\000\006" +
-    "\002\uffe6\020\uffe6\001\002\000\006\002\ufff3\020\ufff3\001" +
-    "\002\000\006\002\ufff5\020\ufff5\001\002\000\006\002\ufff4" +
-    "\020\ufff4\001\002\000\006\002\ufff6\020\ufff6\001\002\000" +
-    "\006\002\ufff7\020\ufff7\001\002\000\004\002\001\001\002" +
-    "" });
+    "\000\044\000\016\004\013\005\006\006\005\007\012\010" +
+    "\007\024\010\001\002\000\004\002\046\001\002\000\024" +
+    "\002\ufff8\016\040\017\041\020\ufff8\021\037\022\045\023" +
+    "\044\025\042\026\043\001\002\000\006\002\ufff9\020\ufff9" +
+    "\001\002\000\010\016\035\017\036\021\034\001\002\000" +
+    "\004\002\000\001\002\000\006\002\ufffe\020\032\001\002" +
+    "\000\010\016\021\017\022\021\020\001\002\000\014\002" +
+    "\ufffd\016\015\017\016\020\ufffd\021\014\001\002\000\006" +
+    "\002\ufffa\020\ufffa\001\002\000\006\002\ufffc\020\ufffc\001" +
+    "\002\000\006\002\ufffb\020\ufffb\001\002\000\006\002\uffed" +
+    "\020\uffed\001\002\000\014\002\ufff0\016\026\017\027\020" +
+    "\ufff0\021\025\001\002\000\014\002\uffee\016\026\017\027" +
+    "\020\uffee\021\025\001\002\000\014\002\uffef\016\026\017" +
+    "\027\020\uffef\021\025\001\002\000\006\002\uffe9\020\uffe9" +
+    "\001\002\000\006\002\uffeb\020\uffeb\001\002\000\014\002" +
+    "\uffe8\016\026\017\027\020\uffe8\021\025\001\002\000\014" +
+    "\002\uffe6\016\026\017\027\020\uffe6\021\025\001\002\000" +
+    "\014\002\uffe7\016\026\017\027\020\uffe7\021\025\001\002" +
+    "\000\006\002\uffea\020\uffea\001\002\000\006\002\uffec\020" +
+    "\uffec\001\002\000\016\004\013\005\006\006\005\007\012" +
+    "\010\007\024\010\001\002\000\004\002\uffff\001\002\000" +
+    "\006\002\uffe5\020\uffe5\001\002\000\006\002\uffe3\020\uffe3" +
+    "\001\002\000\006\002\uffe4\020\uffe4\001\002\000\006\002" +
+    "\ufff1\020\ufff1\001\002\000\006\002\ufff3\020\ufff3\001\002" +
+    "\000\006\002\ufff2\020\ufff2\001\002\000\006\002\ufff5\020" +
+    "\ufff5\001\002\000\006\002\ufff4\020\ufff4\001\002\000\006" +
+    "\002\ufff6\020\ufff6\001\002\000\006\002\ufff7\020\ufff7\001" +
+    "\002\000\004\002\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -87,7 +88,7 @@ public class parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\042\000\006\002\003\003\010\001\001\000\002\001" +
+    "\000\044\000\006\002\003\003\010\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\004\004\016\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
@@ -100,7 +101,7 @@ public class parser extends java_cup.runtime.lr_parser {
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001" });
+    "\002\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -144,6 +145,7 @@ public class parser extends java_cup.runtime.lr_parser {
     private ManejadorDeArboles manejador;
     private ArrayList<DefaultMutableTreeNode> listaDeNodos = new ArrayList<>();
     //-------------------->MANEJADORES<--------------------------------------
+    private ManejadorDeDirecciones manejadorDirecciones;
     private ManejadorCD manejadorCd;
     private ManejadorPWD manejadorPwd;
     private ManejadorLS manejadorLs;
@@ -158,6 +160,7 @@ public class parser extends java_cup.runtime.lr_parser {
                 manejadorLs = new ManejadorLS(this.manejador);
                 manejadorTouch = new ManejadorTouch(this.manejador);
                 manejadorMkdir = new ManejadorMKDIR(this.manejador);
+                manejadorDirecciones = new ManejadorDeDirecciones(this.manejador);
 	}
 
     //Metodo al que se llama automaticamente ante algun error sintactico
@@ -268,7 +271,7 @@ class CUP$parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorCd.buscarDireccion(manejadorCd.manejarDireccionAbsoluta(a));System.out.printf("Direccion Absoluta:%s\n",a);
+		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionAbsoluta(a));System.out.printf("Direccion Absoluta:%s\n",a);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -280,7 +283,7 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorCd.buscarDireccion(manejadorCd.manejarDireccionRelativa(b));System.out.printf("Direccion Relativa:%s\n",b);
+		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionRelativa(b));System.out.printf("Direccion Relativa:%s\n",b);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -292,7 +295,7 @@ class CUP$parser$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String c = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorCd.buscarDireccion(manejadorCd.manejarDireccionId(c));System.out.printf("Direccion Relativa:%s\n",c);
+		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionId(c));System.out.printf("Direccion Relativa:%s\n",c);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -310,7 +313,7 @@ class CUP$parser$actions {
           case 9: // expresion ::= LS 
             {
               Object RESULT =null;
-		manejadorLs.buscarHijosDeNodoSinDireccionEspecifica();
+		manejadorLs.buscarHijosDeNodoSinDireccionEspecifica(manejador.getMiTerminal().getDireccionActual());
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -319,7 +322,7 @@ class CUP$parser$actions {
           case 10: // expresion ::= LS MOSTRAR_ARCHIVOS_L 
             {
               Object RESULT =null;
-		manejadorLs.buscarY_MostrarInformacionDeHijosSinDireccionEspecifica();
+		manejadorLs.buscarY_MostrarInformacionDeHijosSinDireccionEspecifica(manejador.getMiTerminal().getDireccionActual());
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -328,49 +331,67 @@ class CUP$parser$actions {
           case 11: // expresion ::= LS MOSTRAR_ARCHIVOS_A 
             {
               Object RESULT =null;
-		
+		manejadorLs.buscarHijosSinDireccionEspecificaOcultos(manejador.getMiTerminal().getDireccionActual());
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // expresion ::= LS FORMATO_DIRECCION_ABSOLUTA 
+          case 12: // expresion ::= LS MOSTRAR_ARCHIVOS_LA 
+            {
+              Object RESULT =null;
+		manejadorLs.buscarY_MostrarInfoDeHijos(manejador.getMiTerminal().getDireccionActual());
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // expresion ::= LS MOSTRAR_ARCHIVOS_AL 
+            {
+              Object RESULT =null;
+		manejadorLs.buscarY_MostrarInfoDeHijos(manejador.getMiTerminal().getDireccionActual());
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 14: // expresion ::= LS FORMATO_DIRECCION_ABSOLUTA 
             {
               Object RESULT =null;
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int dright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String d = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejador.buscarHijosDeNodo(d);
+		manejadorLs.buscarHijosConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd,"ls");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // expresion ::= LS FORMATO_DIRECCION__RELATIVA 
+          case 15: // expresion ::= LS FORMATO_DIRECCION__RELATIVA 
             {
               Object RESULT =null;
 		int fleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int fright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String f = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejador.buscarHijosDeNodo(f);
+		manejadorLs.buscarHijosConDireccion(manejadorDirecciones.manejarDireccionRelativa(f),manejadorCd,"ls");;
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // expresion ::= LS IDENTIFICADOR 
+          case 16: // expresion ::= LS IDENTIFICADOR 
             {
               Object RESULT =null;
 		int gleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int gright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String g = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejador.buscarHijosDeNodo(g);
+		manejadorLs.buscarHijosConDireccion(manejadorDirecciones.manejarDireccionId(g),manejadorCd,"ls");;
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // expresion ::= TOUCH IDENTIFICADOR 
+          case 17: // expresion ::= TOUCH IDENTIFICADOR 
             {
               Object RESULT =null;
 		int hleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
@@ -382,7 +403,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // expresion ::= TOUCH FORMATO_DIRECCION__RELATIVA 
+          case 18: // expresion ::= TOUCH FORMATO_DIRECCION__RELATIVA 
             {
               Object RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
@@ -394,7 +415,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // expresion ::= TOUCH FORMATO_DIRECCION_ABSOLUTA 
+          case 19: // expresion ::= TOUCH FORMATO_DIRECCION_ABSOLUTA 
             {
               Object RESULT =null;
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
@@ -406,7 +427,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // expresion ::= TOUCH nombresDeArchivos 
+          case 20: // expresion ::= TOUCH nombresDeArchivos 
             {
               Object RESULT =null;
 		
@@ -415,7 +436,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // nombresDeArchivos ::= IDENTIFICADOR otrosNombresDeArchivos 
+          case 21: // nombresDeArchivos ::= IDENTIFICADOR otrosNombresDeArchivos 
             {
               Object RESULT =null;
 		int kleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
@@ -427,7 +448,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // nombresDeArchivos ::= FORMATO_DIRECCION__RELATIVA otrosNombresDeArchivos 
+          case 22: // nombresDeArchivos ::= FORMATO_DIRECCION__RELATIVA otrosNombresDeArchivos 
             {
               Object RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
@@ -439,7 +460,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // nombresDeArchivos ::= FORMATO_DIRECCION_ABSOLUTA otrosNombresDeArchivos 
+          case 23: // nombresDeArchivos ::= FORMATO_DIRECCION_ABSOLUTA otrosNombresDeArchivos 
             {
               Object RESULT =null;
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
@@ -451,7 +472,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // otrosNombresDeArchivos ::= nombresDeArchivos 
+          case 24: // otrosNombresDeArchivos ::= nombresDeArchivos 
             {
               Object RESULT =null;
 
@@ -460,7 +481,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // otrosNombresDeArchivos ::= IDENTIFICADOR 
+          case 25: // otrosNombresDeArchivos ::= IDENTIFICADOR 
             {
               Object RESULT =null;
 		int jleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
@@ -472,7 +493,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // otrosNombresDeArchivos ::= FORMATO_DIRECCION__RELATIVA 
+          case 26: // otrosNombresDeArchivos ::= FORMATO_DIRECCION__RELATIVA 
             {
               Object RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
@@ -484,7 +505,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // otrosNombresDeArchivos ::= FORMATO_DIRECCION_ABSOLUTA 
+          case 27: // otrosNombresDeArchivos ::= FORMATO_DIRECCION_ABSOLUTA 
             {
               Object RESULT =null;
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
@@ -496,7 +517,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // expresion ::= MKDIR IDENTIFICADOR 
+          case 28: // expresion ::= MKDIR IDENTIFICADOR 
             {
               Object RESULT =null;
 		int hleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
@@ -508,7 +529,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // expresion ::= MKDIR FORMATO_DIRECCION__RELATIVA 
+          case 29: // expresion ::= MKDIR FORMATO_DIRECCION__RELATIVA 
             {
               Object RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
@@ -520,7 +541,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // expresion ::= MKDIR FORMATO_DIRECCION_ABSOLUTA 
+          case 30: // expresion ::= MKDIR FORMATO_DIRECCION_ABSOLUTA 
             {
               Object RESULT =null;
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
