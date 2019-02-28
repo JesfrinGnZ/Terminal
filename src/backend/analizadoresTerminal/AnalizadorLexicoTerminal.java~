@@ -38,10 +38,10 @@ public class AnalizadorLexicoTerminal implements java_cup.runtime.Scanner {
    */
   private static final String ZZ_CMAP_PACKED = 
     "\11\4\1\3\1\2\1\0\1\3\1\1\16\4\4\0\1\3\2\0"+
-    "\1\4\1\4\1\0\1\24\4\0\1\4\1\0\1\25\1\4\1\31"+
-    "\12\4\6\0\1\4\32\4\4\0\1\4\1\0\1\26\1\4\1\12"+
-    "\1\7\1\27\2\4\1\16\1\21\1\4\1\20\1\10\1\17\1\4"+
-    "\1\14\1\5\1\4\1\22\1\11\1\13\1\15\1\23\1\6\1\30"+
+    "\1\4\1\4\1\0\1\27\4\0\1\5\1\0\1\6\1\4\1\32"+
+    "\12\4\6\0\1\4\32\4\4\0\1\4\1\0\1\30\1\4\1\16"+
+    "\1\13\1\31\2\4\1\22\1\25\1\4\1\24\1\14\1\23\1\4"+
+    "\1\20\1\12\1\4\1\7\1\15\1\17\1\21\1\26\1\10\1\11"+
     "\2\4\1\0\1\4\2\0\41\4\2\0\4\4\4\0\1\4\2\0"+
     "\1\4\7\0\1\4\4\0\1\4\5\0\27\4\1\0\37\4\1\0"+
     "\u01ca\4\4\0\14\4\16\0\5\4\7\0\1\4\1\0\1\4\21\0"+
@@ -172,13 +172,14 @@ public class AnalizadorLexicoTerminal implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\7\3\1\1\2\3\1\1\1\4"+
-    "\1\3\1\5\1\6\1\7\3\3\1\10\1\11\1\12"+
-    "\1\13\1\14\1\3\1\15\1\0\1\16\4\3\1\17"+
-    "\1\20\5\3\1\21\1\22\1\23\1\24\1\25";
+    "\1\0\1\1\2\2\11\3\1\1\1\3\1\1\1\4"+
+    "\3\5\1\6\1\7\1\10\1\3\1\11\1\12\1\13"+
+    "\3\3\1\14\1\15\1\3\1\16\1\0\3\5\1\17"+
+    "\1\20\1\3\1\21\4\3\1\5\4\3\1\22\1\23"+
+    "\1\24\1\25\1\26";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[48];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -203,15 +204,16 @@ public class AnalizadorLexicoTerminal implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\32\0\64\0\32\0\116\0\150\0\202\0\234"+
-    "\0\266\0\320\0\352\0\u0104\0\u011e\0\u0138\0\u0152\0\u016c"+
-    "\0\u0186\0\116\0\116\0\116\0\u01a0\0\u01ba\0\u01d4\0\116"+
-    "\0\u01ee\0\32\0\u0208\0\u0222\0\u023c\0\u0256\0\u0152\0\116"+
-    "\0\u0270\0\u028a\0\u02a4\0\u02be\0\116\0\116\0\u02d8\0\u02f2"+
-    "\0\u030c\0\u0326\0\u0340\0\116\0\116\0\116\0\116\0\116";
+    "\0\0\0\33\0\66\0\33\0\121\0\154\0\207\0\242"+
+    "\0\275\0\330\0\363\0\u010e\0\u0129\0\u0144\0\u015f\0\u017a"+
+    "\0\u0195\0\u01b0\0\u01cb\0\u01e6\0\u0201\0\u021c\0\u0237\0\u0252"+
+    "\0\121\0\121\0\121\0\u026d\0\u0288\0\u02a3\0\121\0\33"+
+    "\0\u02be\0\u02d9\0\u017a\0\u02f4\0\u030f\0\u032a\0\121\0\121"+
+    "\0\u0345\0\121\0\u0360\0\u037b\0\u0396\0\u03b1\0\121\0\u03cc"+
+    "\0\u03e7\0\u0402\0\u041d\0\121\0\121\0\121\0\121\0\121";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[48];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -234,37 +236,45 @@ public class AnalizadorLexicoTerminal implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\2\4\1\5\1\6\2\5\1\7\1\5"+
-    "\1\10\1\11\3\5\1\12\2\5\1\13\1\5\1\14"+
-    "\1\15\1\5\1\16\1\5\1\17\34\0\1\4\33\0"+
-    "\20\5\1\0\4\5\1\20\4\0\2\5\1\21\15\5"+
-    "\1\0\4\5\1\20\4\0\5\5\1\22\12\5\1\0"+
-    "\4\5\1\20\4\0\1\5\1\23\1\5\1\24\6\5"+
-    "\1\25\5\5\1\0\4\5\1\20\4\0\10\5\1\26"+
-    "\7\5\1\0\4\5\1\20\4\0\14\5\1\27\2\5"+
-    "\1\30\1\0\4\5\1\20\4\0\13\5\1\31\4\5"+
-    "\1\0\4\5\1\20\24\0\1\32\11\0\4\5\1\33"+
-    "\13\5\1\0\1\5\1\34\2\5\1\20\4\0\20\5"+
-    "\1\0\3\5\1\35\1\20\4\0\20\36\1\0\4\36"+
-    "\1\37\4\0\20\20\1\0\5\20\4\0\3\5\1\40"+
-    "\14\5\1\0\4\5\1\20\4\0\13\5\1\41\4\5"+
-    "\1\0\4\5\1\20\4\0\11\5\1\42\6\5\1\0"+
-    "\4\5\1\20\4\0\3\5\1\43\14\5\1\0\4\5"+
-    "\1\20\4\0\3\5\1\44\14\5\1\0\4\5\1\20"+
-    "\4\0\20\5\1\0\1\5\1\45\2\5\1\20\4\0"+
-    "\4\5\1\46\13\5\1\0\4\5\1\20\4\0\15\5"+
-    "\1\47\2\5\1\0\4\5\1\20\4\0\20\36\1\0"+
-    "\5\36\4\0\10\5\1\50\7\5\1\0\4\5\1\20"+
-    "\4\0\6\5\1\51\11\5\1\0\4\5\1\20\4\0"+
-    "\15\5\1\52\2\5\1\0\4\5\1\20\4\0\15\5"+
-    "\1\53\2\5\1\0\4\5\1\20\4\0\7\5\1\54"+
-    "\10\5\1\0\4\5\1\20\4\0\3\5\1\55\14\5"+
-    "\1\0\4\5\1\20\4\0\12\5\1\56\5\5\1\0"+
-    "\4\5\1\20\4\0\16\5\1\57\1\5\1\0\4\5"+
-    "\1\20\4\0\16\5\1\60\1\5\1\0\4\5\1\20";
+    "\1\2\1\3\2\4\1\5\1\6\1\7\1\10\2\5"+
+    "\1\11\1\5\1\12\1\5\1\13\1\14\3\5\1\15"+
+    "\3\5\1\16\1\5\1\17\1\20\35\0\1\4\34\0"+
+    "\23\5\1\0\2\5\1\21\4\0\3\5\1\22\1\23"+
+    "\1\24\15\5\1\0\2\5\1\21\4\0\3\5\1\22"+
+    "\1\23\1\24\2\5\1\25\12\5\1\0\1\26\1\5"+
+    "\1\21\4\0\17\5\1\27\3\5\1\0\2\5\1\21"+
+    "\4\0\4\5\1\30\16\5\1\0\2\5\1\21\4\0"+
+    "\11\5\1\31\11\5\1\0\2\5\1\21\4\0\6\5"+
+    "\1\32\1\33\6\5\1\34\4\5\1\0\2\5\1\21"+
+    "\4\0\14\5\1\35\6\5\1\0\2\5\1\21\4\0"+
+    "\20\5\1\36\1\5\1\37\1\0\2\5\1\21\27\0"+
+    "\1\40\7\0\5\5\1\41\15\5\1\0\2\5\1\21"+
+    "\4\0\23\42\1\0\2\42\1\43\4\0\23\21\1\0"+
+    "\3\21\4\0\4\5\1\44\1\45\15\5\1\0\2\5"+
+    "\1\21\4\0\3\5\1\44\1\5\1\46\15\5\1\0"+
+    "\2\5\1\21\4\0\3\5\1\45\1\46\16\5\1\0"+
+    "\2\5\1\21\4\0\23\5\1\0\1\47\1\5\1\21"+
+    "\4\0\10\5\1\50\12\5\1\0\2\5\1\21\4\0"+
+    "\7\5\1\51\13\5\1\0\2\5\1\21\4\0\7\5"+
+    "\1\52\13\5\1\0\2\5\1\21\4\0\17\5\1\53"+
+    "\3\5\1\0\2\5\1\21\4\0\15\5\1\54\5\5"+
+    "\1\0\2\5\1\21\4\0\7\5\1\55\13\5\1\0"+
+    "\2\5\1\21\4\0\21\5\1\56\1\5\1\0\2\5"+
+    "\1\21\4\0\23\42\1\0\3\42\4\0\5\5\1\57"+
+    "\15\5\1\0\2\5\1\21\4\0\4\5\1\57\16\5"+
+    "\1\0\2\5\1\21\4\0\3\5\1\57\17\5\1\0"+
+    "\2\5\1\21\4\0\21\5\1\60\1\5\1\0\2\5"+
+    "\1\21\4\0\14\5\1\61\6\5\1\0\2\5\1\21"+
+    "\4\0\12\5\1\62\10\5\1\0\2\5\1\21\4\0"+
+    "\21\5\1\63\1\5\1\0\2\5\1\21\4\0\13\5"+
+    "\1\64\7\5\1\0\2\5\1\21\4\0\3\5\1\65"+
+    "\17\5\1\0\2\5\1\21\4\0\7\5\1\66\13\5"+
+    "\1\0\2\5\1\21\4\0\16\5\1\67\4\5\1\0"+
+    "\2\5\1\21\4\0\3\5\1\70\17\5\1\0\2\5"+
+    "\1\21";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[858];
+    int [] result = new int[1080];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -302,11 +312,11 @@ public class AnalizadorLexicoTerminal implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\1\11\25\1\1\11\4\1\1\0"+
-    "\21\1";
+    "\1\0\1\11\1\1\1\11\33\1\1\11\2\1\1\0"+
+    "\25\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[48];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -785,107 +795,112 @@ public class AnalizadorLexicoTerminal implements java_cup.runtime.Scanner {
             { System.out.println("Simbolo invalido");
             } 
             // fall through
-          case 22: break;
+          case 23: break;
           case 2: 
             { /* ignoramos */
             } 
             // fall through
-          case 23: break;
+          case 24: break;
           case 3: 
             { return symbol(IDENTIFICADOR,yytext());
             } 
             // fall through
-          case 24: break;
+          case 25: break;
           case 4: 
             { return symbol(FORMATO_DIRECCION__RELATIVA,yytext());
             } 
             // fall through
-          case 25: break;
-          case 5: 
-            { return symbol(LS);
-            } 
-            // fall through
           case 26: break;
-          case 6: 
-            { return symbol(CP);
+          case 5: 
+            { return symbol(ESTRUCTURA_PERMISOS,yytext());
             } 
             // fall through
           case 27: break;
-          case 7: 
-            { return symbol(CD);
+          case 6: 
+            { return symbol(MOSTRAR_ARCHIVOS_L);
             } 
             // fall through
           case 28: break;
-          case 8: 
-            { return symbol(MV);
+          case 7: 
+            { return symbol(MOSTRAR_ARCHIVOS_A);
             } 
             // fall through
           case 29: break;
-          case 9: 
+          case 8: 
             { return symbol(RM);
             } 
             // fall through
           case 30: break;
-          case 10: 
-            { return symbol(CONCATENACION);
+          case 9: 
+            { return symbol(LS);
             } 
             // fall through
           case 31: break;
-          case 11: 
-            { return symbol(MOSTRAR_ARCHIVOS_L);
+          case 10: 
+            { return symbol(CP);
             } 
             // fall through
           case 32: break;
-          case 12: 
-            { return symbol(MOSTRAR_ARCHIVOS_A);
+          case 11: 
+            { return symbol(CD);
             } 
             // fall through
           case 33: break;
-          case 13: 
-            { return symbol(FORMATO_DIRECCION_ABSOLUTA,yytext());
+          case 12: 
+            { return symbol(MV);
             } 
             // fall through
           case 34: break;
-          case 14: 
-            { return symbol(PWD);
+          case 13: 
+            { return symbol(CONCATENACION);
             } 
             // fall through
           case 35: break;
+          case 14: 
+            { return symbol(FORMATO_DIRECCION_ABSOLUTA,yytext());
+            } 
+            // fall through
+          case 36: break;
           case 15: 
             { return symbol(MOSTRAR_ARCHIVOS_LA);
             } 
             // fall through
-          case 36: break;
+          case 37: break;
           case 16: 
             { return symbol(MOSTRAR_ARCHIVOS_AL);
             } 
             // fall through
-          case 37: break;
-          case 17: 
-            { return symbol(EXIT);
-            } 
-            // fall through
           case 38: break;
-          case 18: 
-            { return symbol(CHMOD);
+          case 17: 
+            { return symbol(PWD);
             } 
             // fall through
           case 39: break;
-          case 19: 
-            { return symbol(TOUCH);
+          case 18: 
+            { return symbol(EXIT);
             } 
             // fall through
           case 40: break;
-          case 20: 
-            { return symbol(MKDIR);
-            } 
-            // fall through
-          case 41: break;
-          case 21: 
+          case 19: 
             { return symbol(RMDIR);
             } 
             // fall through
+          case 41: break;
+          case 20: 
+            { return symbol(CHMOD);
+            } 
+            // fall through
           case 42: break;
+          case 21: 
+            { return symbol(TOUCH);
+            } 
+            // fall through
+          case 43: break;
+          case 22: 
+            { return symbol(MKDIR);
+            } 
+            // fall through
+          case 44: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

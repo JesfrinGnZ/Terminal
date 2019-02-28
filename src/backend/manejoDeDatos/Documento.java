@@ -83,6 +83,111 @@ public class Documento {
         this.tienePermisoDeEjecucion = permisos.charAt(3) != '-';
     }
 
+    public void cambiarPermisos(String permiso) {
+        boolean seDebeAnadir = false;
+        if (permiso.startsWith("+")) {
+            seDebeAnadir = true;
+        }
+        StringBuilder cadena = new StringBuilder(permisos);
+        String permisoTemp = "";
+        for (int i = 1; i < permiso.length(); i++) {
+            permisoTemp += permiso.charAt(i);
+
+        }
+
+        switch (permisoTemp) {
+            case "r":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(1, 'r');
+                } else {
+                    cadena.setCharAt(1, '-');
+                }
+                break;
+            case "w":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(2, 'w');
+                } else {
+                    cadena.setCharAt(2, '-');
+                }
+                break;
+            case "x":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(3, 'x');
+                } else {
+                    cadena.setCharAt(3, '-');
+                }
+                break;
+            case "rw":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(1, 'r');
+                    cadena.setCharAt(2, 'w');
+                } else {
+                    cadena.setCharAt(1, '-');
+                    cadena.setCharAt(2, '-');
+                }
+                break;
+            case "rx":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(1, 'r');
+                    cadena.setCharAt(3, 'x');
+                } else {
+                    cadena.setCharAt(1, '-');
+                    cadena.setCharAt(3, '-');
+                }
+                break;
+            case "wr":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(2, 'w');
+                    cadena.setCharAt(1, 'r');
+                } else {
+                    cadena.setCharAt(2, '-');
+                    cadena.setCharAt(1, '-');
+                }
+                break;
+            case "wx":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(2, 'w');
+                    cadena.setCharAt(3, 'x');
+                } else {
+                    cadena.setCharAt(2, '-');
+                    cadena.setCharAt(3, '-');
+                }
+                break;
+            case "xr":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(3, 'x');
+                    cadena.setCharAt(1, 'r');
+                } else {
+                    cadena.setCharAt(3, '-');
+                    cadena.setCharAt(1, '-');
+                }
+                break;
+            case "xw":
+                if (seDebeAnadir) {
+                    cadena.setCharAt(3, 'x');
+                    cadena.setCharAt(2, 'w');
+                } else {
+                    cadena.setCharAt(3, '-');
+                    cadena.setCharAt(2, '-');
+                }
+                break;
+            default:
+                if (seDebeAnadir) {
+                    cadena.setCharAt(1, 'r');
+                    cadena.setCharAt(2, 'w');
+                    cadena.setCharAt(3, 'x');
+                } else {
+                    cadena.setCharAt(1, '-');
+                    cadena.setCharAt(2, '-');
+                    cadena.setCharAt(3, '-');
+                }
+                break;
+
+        }
+        permisos = cadena.toString();
+
+    }
+
     public boolean esFolder() {
         return esFolder;
     }
@@ -111,12 +216,10 @@ public class Documento {
         anio = Integer.valueOf(datosDeFecha[2]);
         this.fechaDeCreacion = LocalDate.of(anio, mes, dia);
     }
-    
-    public void setFechaDeCreacionConFechaDeSistema(){
-        this.fechaDeCreacion=LocalDate.now();
+
+    public void setFechaDeCreacionConFechaDeSistema() {
+        this.fechaDeCreacion = LocalDate.now();
     }
-    
-    
 
     public DefaultMutableTreeNode getNodo() {
         return nodo;
@@ -134,9 +237,9 @@ public class Documento {
         String[] hora = horaDeCreacion.split(":");
         this.horaDeCreacion = LocalTime.of(Integer.valueOf(hora[0]), Integer.valueOf(hora[1]));
     }
-    
-    public void setHoraDeCreacionConHoraDelSistema(){
-        this.horaDeCreacion=LocalTime.now();
+
+    public void setHoraDeCreacionConHoraDelSistema() {
+        this.horaDeCreacion = LocalTime.now();
     }
 
     public boolean esOculto() {

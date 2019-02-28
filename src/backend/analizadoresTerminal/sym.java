@@ -23,6 +23,7 @@ public class sym {
   public static final int PWD = 3;
   public static final int EOF = 0;
   public static final int MOSTRAR_ARCHIVOS_LA = 19;
+  public static final int ESTRUCTURA_PERMISOS = 21;
   public static final int MOSTRAR_ARCHIVOS_AL = 20;
   public static final int error = 1;
   public static final int IDENTIFICADOR = 15;
@@ -50,7 +51,8 @@ public class sym {
   "MOSTRAR_ARCHIVOS_A",
   "EXIT",
   "MOSTRAR_ARCHIVOS_LA",
-  "MOSTRAR_ARCHIVOS_AL"
+  "MOSTRAR_ARCHIVOS_AL",
+  "ESTRUCTURA_PERMISOS"
   };
 }
 

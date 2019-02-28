@@ -66,7 +66,7 @@ Identifier = ({SignosEspeciales}+|[:jletterdigit:]+)+
         
         "oculto"                { return symbol(OCULTO);}
 
-        {DIGITO}{DIGITO}(":"){DIGITO}{DIGITO} {return symbol(FORMATO_HORA,yytext());}
+        {DIGITO}{DIGITO}*(":"){DIGITO}{DIGITO}* {return symbol(FORMATO_HORA,yytext());}
         
         {DIGITO}{DIGITO}*["/"]{DIGITO}{DIGITO}*["/"]{DIGITO}{DIGITO}*	{ return symbol(FORMATO_FECHA,yytext());}	
 

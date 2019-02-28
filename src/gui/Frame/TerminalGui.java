@@ -61,7 +61,7 @@ public class TerminalGui extends javax.swing.JFrame {
         documentosPanel = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -269,51 +269,18 @@ public class TerminalGui extends javax.swing.JFrame {
         filaDeInstruccion++;
     }
 
+    //Instrucciones para mv
+    
     //Instrucciones para indicar un error
     public void informarDeUnError(String cadena) {
         this.consolaTextArea.append("\nExistio un error sintactico en la instruccion:" + cadena);
         this.filaDeInstruccion++;
     }
 
-//    private void crearCarpeta() {
-//        // Construccion del arbol
-//        DefaultMutableTreeNode abuelo = new DefaultMutableTreeNode("abuelo");
-//        DefaultTreeModel modelo = new DefaultTreeModel(abuelo);
-//        JTree tree = new JTree(modelo);
-//
-//        // Construccion de los datos del arbol
-//        DefaultMutableTreeNode padre = new DefaultMutableTreeNode("padre");
-//        DefaultMutableTreeNode tio = new DefaultMutableTreeNode("tio");
-//        modelo.insertNodeInto(padre, abuelo, 0);
-//        modelo.insertNodeInto(tio, abuelo, 1);
-//
-//        DefaultMutableTreeNode hijo = new DefaultMutableTreeNode("hijo");
-//        DefaultMutableTreeNode hija = new DefaultMutableTreeNode("hija");
-//        modelo.insertNodeInto(hijo, padre, 0);
-//        modelo.insertNodeInto(hija, padre, 1);
-//
-//         //Construccion y visualizacion de la ventana
-//        JFrame v = new JFrame();
-//        JScrollPane scroll = new JScrollPane(tree);
-//        v.getContentPane().add(scroll);
-//        v.pack();
-//        v.setVisible(true);
-//        v.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//
-//        DefaultTreeModel model = (DefaultTreeModel) jTree1.getModel();
-//        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) model.getRoot();
-//        System.out.println("Riz:" + raiz);
-//        DefaultMutableTreeNode home = new DefaultMutableTreeNode("home");
-//        raiz.add(home);
-//        DefaultMutableTreeNode raizHija = new DefaultMutableTreeNode("/");
-//        raiz.add(raizHija);
-//        raiz.remove(raizHija);
-//        if (raizHija.equals("/")) {
-//            System.out.println("Its true");
-//        } else {
-//            System.out.println("Its false");
-//        }
-//    }
+    public void salirDelPrograma(){
+        System.exit(0);
+    }
+    
     public String getDireccionActual() {
         return direccionActual;
     }

@@ -39,6 +39,8 @@ Identifier = ({SignosEspeciales}+|[:jletterdigit:]+)+
 %% //------------------>3er area<--------------------------    
 <YYINITIAL> {
 
+        (("+"|"-")(r|w|x|rw|rx|wr|wx|xr|xw|rwx|rxw|wrx|wxr|xwr|xrw)) {return symbol(ESTRUCTURA_PERMISOS,yytext());}
+
 	"pwd"             { return symbol(PWD);}
 				
 	"ls"	{ return symbol(LS);}

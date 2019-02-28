@@ -23,6 +23,8 @@ parser code {:
     private ManejadorLS manejadorLs;
     private ManejadorTouch manejadorTouch;
     private ManejadorMKDIR manejadorMkdir;
+    private ManejadorDeMv manejadorDeMv;
+    private ManejadorDeCHMOD manejadorChmod;
 	// Connect this parser to a scanner!
 	public parser(AnalizadorLexicoTerminal lex,ManejadorDeArboles manejador) {
 		super(lex);
@@ -33,6 +35,9 @@ parser code {:
                 manejadorTouch = new ManejadorTouch(this.manejador);
                 manejadorMkdir = new ManejadorMKDIR(this.manejador);
                 manejadorDirecciones = new ManejadorDeDirecciones(this.manejador);
+                manejadorDeMv = new ManejadorDeMv(this.manejador);
+                manejadorChmod = new ManejadorDeCHMOD(this.manejador);
+                
 	}
 
     //Metodo al que se llama automaticamente ante algun error sintactico
@@ -64,7 +69,7 @@ String lexema = s.value.toString();
 
 /*--------------- 2da Area: Declaraciones -----------------------*/
 
-terminal String         CD,PWD,LS,TOUCH,MKDIR,MV,CP,RM,RMDIR,CHMOD,FORMATO_DIRECCION_ABSOLUTA,FORMATO_DIRECCION__RELATIVA,CONCATENACION,IDENTIFICADOR,MOSTRAR_ARCHIVOS_L,MOSTRAR_ARCHIVOS_A,EXIT,MOSTRAR_ARCHIVOS_LA,MOSTRAR_ARCHIVOS_AL;
+terminal String         CD,PWD,LS,TOUCH,MKDIR,MV,CP,RM,RMDIR,CHMOD,FORMATO_DIRECCION_ABSOLUTA,FORMATO_DIRECCION__RELATIVA,CONCATENACION,IDENTIFICADOR,MOSTRAR_ARCHIVOS_L,MOSTRAR_ARCHIVOS_A,EXIT,MOSTRAR_ARCHIVOS_LA,MOSTRAR_ARCHIVOS_AL,ESTRUCTURA_PERMISOS;
 
 non terminal Object     expresiones, expresion,nombresDeArchivos,otrosNombresDeArchivos,nombresDeCarpetas,otrosNombresDeCarpetas; 
 /*--------------- 3ra Area: Reglas Semanticas -----------------------*/
@@ -72,7 +77,7 @@ non terminal Object     expresiones, expresion,nombresDeArchivos,otrosNombresDeA
 start with expresiones;
 
 expresiones ::= EXIT
-                   {:EscritorDeArchivo.escribirEnArchivo("/home/jesfrin/Documentos/Textos/Folders",manejador);:};
+                   {:EscritorDeArchivo.escribirEnArchivo("/home/jesfrin/Documentos/Textos/Folders",manejador);manejador.getMiTerminal().salirDelPrograma();:};
 
 expresiones ::= expresion CONCATENACION expresiones | expresion;
 
@@ -184,4 +189,13 @@ otrosNombresDeCarpetas ::= nombresDeCarpetas|
                 FORMATO_DIRECCION_ABSOLUTA:d
                             {:manejadorMkdir.crearCarpetasConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd);:};//Con direccion
 
-           
+
+//--------------------------------->MV<----------------------------------
+
+expresion ::=   MV  IDENTIFICADOR:a IDENTIFICADOR:b
+                {:manejadorDeMv.cambiarDeNombre(a,b);:};
+
+//-------------------------------->CHMOD<----------------------------------
+
+expresion ::=   CHMOD ESTRUCTURA_PERMISOS:h IDENTIFICADOR:b
+                {:manejadorChmod.cambiarPermisosDeArchivo(manejadorDirecciones.manejarDireccionId(b),manejadorCd,h);System.out.printf("Detecto permiso :):%s",h);:};
