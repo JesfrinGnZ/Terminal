@@ -51,7 +51,7 @@ parser code {:
     //Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
     {       
-        System.out.println("!!!!!!! Error Sintactico, Panic Mode !!!!!!! ");
+        //System.out.println("!!!!!!! Error Sintactico, Panic Mode !!!!!!! ");
  
 /*        
 String lexema = s.value.toString();
@@ -198,4 +198,11 @@ expresion ::=   MV  IDENTIFICADOR:a IDENTIFICADOR:b
 //-------------------------------->CHMOD<----------------------------------
 
 expresion ::=   CHMOD ESTRUCTURA_PERMISOS:h IDENTIFICADOR:b
-                {:manejadorChmod.cambiarPermisosDeArchivo(manejadorDirecciones.manejarDireccionId(b),manejadorCd,h);System.out.printf("Detecto permiso :):%s",h);:};
+                {:manejadorChmod.cambiarPermisosDeArchivo(manejadorDirecciones.manejarDireccionId(b),manejadorCd,h);System.out.printf("Detecto permiso :):%s",h);:}
+                |
+                CHMOD ESTRUCTURA_PERMISOS:j FORMATO_DIRECCION__RELATIVA:k
+                {:manejadorChmod.cambiarPermisosDeArchivo(manejadorDirecciones.manejarDireccionRelativa(k),manejadorCd,j);System.out.printf("Detecto permiso :):%s",k);:}
+
+                |
+                CHMOD ESTRUCTURA_PERMISOS:l FORMATO_DIRECCION_ABSOLUTA:m
+                {:manejadorChmod.cambiarPermisosDeArchivo(manejadorDirecciones.manejarDireccionAbsoluta(m),manejadorCd,l);System.out.printf("Detecto permiso :):%s",m);:};
