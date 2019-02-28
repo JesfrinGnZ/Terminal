@@ -36,7 +36,7 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\037\000\002\002\004\000\002\002\003\000\002\002" +
+    "\000\047\000\002\002\004\000\002\002\003\000\002\002" +
     "\005\000\002\002\003\000\002\003\003\000\002\003\004" +
     "\000\002\003\004\000\002\003\004\000\002\003\003\000" +
     "\002\003\003\000\002\003\004\000\002\003\004\000\002" +
@@ -45,7 +45,10 @@ public class parser extends java_cup.runtime.lr_parser {
     "\000\002\003\004\000\002\003\004\000\002\004\004\000" +
     "\002\004\004\000\002\004\004\000\002\005\003\000\002" +
     "\005\003\000\002\005\003\000\002\005\003\000\002\003" +
-    "\004\000\002\003\004\000\002\003\004" });
+    "\004\000\002\003\004\000\002\003\004\000\002\003\004" +
+    "\000\002\006\004\000\002\006\004\000\002\006\004\000" +
+    "\002\007\003\000\002\007\003\000\002\007\003\000\002" +
+    "\007\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -53,10 +56,10 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\044\000\016\004\013\005\006\006\005\007\012\010" +
-    "\007\024\010\001\002\000\004\002\046\001\002\000\024" +
-    "\002\ufff8\016\040\017\041\020\ufff8\021\037\022\045\023" +
-    "\044\025\042\026\043\001\002\000\006\002\ufff9\020\ufff9" +
+    "\000\054\000\016\004\013\005\006\006\005\007\012\010" +
+    "\007\024\010\001\002\000\004\002\056\001\002\000\024" +
+    "\002\ufff8\016\050\017\051\020\ufff8\021\047\022\055\023" +
+    "\054\025\052\026\053\001\002\000\006\002\ufff9\020\ufff9" +
     "\001\002\000\010\016\035\017\036\021\034\001\002\000" +
     "\004\002\000\001\002\000\006\002\ufffe\020\032\001\002" +
     "\000\010\016\021\017\022\021\020\001\002\000\014\002" +
@@ -74,13 +77,21 @@ public class parser extends java_cup.runtime.lr_parser {
     "\000\006\002\uffea\020\uffea\001\002\000\006\002\uffec\020" +
     "\uffec\001\002\000\016\004\013\005\006\006\005\007\012" +
     "\010\007\024\010\001\002\000\004\002\uffff\001\002\000" +
-    "\006\002\uffe5\020\uffe5\001\002\000\006\002\uffe3\020\uffe3" +
-    "\001\002\000\006\002\uffe4\020\uffe4\001\002\000\006\002" +
-    "\ufff1\020\ufff1\001\002\000\006\002\ufff3\020\ufff3\001\002" +
-    "\000\006\002\ufff2\020\ufff2\001\002\000\006\002\ufff5\020" +
-    "\ufff5\001\002\000\006\002\ufff4\020\ufff4\001\002\000\006" +
-    "\002\ufff6\020\ufff6\001\002\000\006\002\ufff7\020\ufff7\001" +
-    "\002\000\004\002\001\001\002" });
+    "\014\002\uffe5\016\042\017\043\020\uffe5\021\041\001\002" +
+    "\000\014\002\uffe3\016\042\017\043\020\uffe3\021\041\001" +
+    "\002\000\014\002\uffe4\016\042\017\043\020\uffe4\021\041" +
+    "\001\002\000\006\002\uffe2\020\uffe2\001\002\000\006\002" +
+    "\uffe0\020\uffe0\001\002\000\014\002\uffdd\016\042\017\043" +
+    "\020\uffdd\021\041\001\002\000\014\002\uffdb\016\042\017" +
+    "\043\020\uffdb\021\041\001\002\000\014\002\uffdc\016\042" +
+    "\017\043\020\uffdc\021\041\001\002\000\006\002\uffde\020" +
+    "\uffde\001\002\000\006\002\uffdf\020\uffdf\001\002\000\006" +
+    "\002\uffe1\020\uffe1\001\002\000\006\002\ufff1\020\ufff1\001" +
+    "\002\000\006\002\ufff3\020\ufff3\001\002\000\006\002\ufff2" +
+    "\020\ufff2\001\002\000\006\002\ufff5\020\ufff5\001\002\000" +
+    "\006\002\ufff4\020\ufff4\001\002\000\006\002\ufff6\020\ufff6" +
+    "\001\002\000\006\002\ufff7\020\ufff7\001\002\000\004\002" +
+    "\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -88,20 +99,25 @@ public class parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\044\000\006\002\003\003\010\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\004\004\016\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\006\004\022\005" +
-    "\030\001\001\000\006\004\022\005\027\001\001\000\006" +
-    "\004\022\005\023\001\001\000\002\001\001\000\002\001" +
-    "\001\000\006\004\022\005\030\001\001\000\006\004\022" +
-    "\005\027\001\001\000\006\004\022\005\023\001\001\000" +
-    "\002\001\001\000\002\001\001\000\006\002\032\003\010" +
+    "\000\054\000\006\002\003\003\010\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\004\006\036" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\004" +
+    "\016\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\006\004" +
+    "\022\005\030\001\001\000\006\004\022\005\027\001\001" +
+    "\000\006\004\022\005\023\001\001\000\002\001\001\000" +
+    "\002\001\001\000\006\004\022\005\030\001\001\000\006" +
+    "\004\022\005\027\001\001\000\006\004\022\005\023\001" +
+    "\001\000\002\001\001\000\002\001\001\000\006\002\032" +
+    "\003\010\001\001\000\002\001\001\000\006\006\043\007" +
+    "\045\001\001\000\006\006\043\007\044\001\001\000\006" +
+    "\006\043\007\037\001\001\000\002\001\001\000\002\001" +
+    "\001\000\006\006\043\007\045\001\001\000\006\006\043" +
+    "\007\044\001\001\000\006\006\043\007\037\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001" });
+    "\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -259,7 +275,7 @@ class CUP$parser$actions {
           case 4: // expresion ::= CD 
             {
               Object RESULT =null;
-		manejadorCd.buscarDireccion(null);
+		manejadorCd.buscarDireccion(null,true);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -271,7 +287,7 @@ class CUP$parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionAbsoluta(a));System.out.printf("Direccion Absoluta:%s\n",a);
+		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionAbsoluta(a),true);System.out.printf("Direccion Absoluta:%s\n",a);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -283,7 +299,7 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionRelativa(b));System.out.printf("Direccion Relativa:%s\n",b);
+		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionRelativa(b),true);System.out.printf("Direccion Relativa:%s\n",b);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -295,7 +311,7 @@ class CUP$parser$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String c = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionId(c));System.out.printf("Direccion Relativa:%s\n",c);
+		manejadorCd.buscarDireccion(manejadorDirecciones.manejarDireccionId(c),true);System.out.printf("Direccion Relativa:%s\n",c);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -397,7 +413,7 @@ class CUP$parser$actions {
 		int hleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int hright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String h = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorTouch.crearArchivosSoloConId(h);System.out.printf("Nombre de archivo:%s",h);
+		manejadorTouch.crearArchivosSoloConId(h,manejador.getMiTerminal().getDireccionActual());System.out.printf("Nombre de archivo:%s",h);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -409,7 +425,7 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		
+		manejadorTouch.crearArchivosConDireccion(manejadorDirecciones.manejarDireccionRelativa(b),manejadorCd);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -421,7 +437,7 @@ class CUP$parser$actions {
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int dright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String d = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		
+		manejadorTouch.crearArchivosConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -442,7 +458,7 @@ class CUP$parser$actions {
 		int kleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int kright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		String k = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		manejadorTouch.crearArchivosSoloConId(k);System.out.printf("Nombre de archivo:%s",k);
+		manejadorTouch.crearArchivosSoloConId(k,manejador.getMiTerminal().getDireccionActual());System.out.printf("Nombre de archivo:%s",k);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("nombresDeArchivos",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -454,7 +470,7 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		
+		manejadorTouch.crearArchivosConDireccion(manejadorDirecciones.manejarDireccionRelativa(b),manejadorCd);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("nombresDeArchivos",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -466,7 +482,7 @@ class CUP$parser$actions {
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int dright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		String d = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		
+		manejadorTouch.crearArchivosConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("nombresDeArchivos",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -487,7 +503,7 @@ class CUP$parser$actions {
 		int jleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int jright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String j = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorTouch.crearArchivosSoloConId(j);System.out.printf("Nombre de archivo:%s",j);
+		manejadorTouch.crearArchivosSoloConId(j,manejador.getMiTerminal().getDireccionActual());System.out.printf("Nombre de archivo:%s",j);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("otrosNombresDeArchivos",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -499,7 +515,7 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		
+		manejadorTouch.crearArchivosConDireccion(manejadorDirecciones.manejarDireccionRelativa(b),manejadorCd);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("otrosNombresDeArchivos",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -511,7 +527,7 @@ class CUP$parser$actions {
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int dright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String d = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		
+		manejadorTouch.crearArchivosConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("otrosNombresDeArchivos",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -523,7 +539,7 @@ class CUP$parser$actions {
 		int hleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int hright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String h = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		manejadorMkdir.crearDirectorioSoloConId(h);System.out.printf("Nombre de archivo:%s",h);
+		manejadorMkdir.crearDirectorioSoloConId(h,manejador.getMiTerminal().getDireccionActual());System.out.printf("Nombre de archivo:%s",h);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -535,7 +551,7 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		
+		manejadorMkdir.crearCarpetasConDireccion(manejadorDirecciones.manejarDireccionRelativa(b),manejadorCd);
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -547,8 +563,98 @@ class CUP$parser$actions {
 		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int dright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String d = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		manejadorMkdir.crearCarpetasConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 31: // expresion ::= MKDIR nombresDeCarpetas 
+            {
+              Object RESULT =null;
 		
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 32: // nombresDeCarpetas ::= IDENTIFICADOR otrosNombresDeCarpetas 
+            {
+              Object RESULT =null;
+		int hleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int hright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		String h = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		manejadorMkdir.crearDirectorioSoloConId(h,manejador.getMiTerminal().getDireccionActual());System.out.printf("Nombre de archivo:%s",h);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("nombresDeCarpetas",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 33: // nombresDeCarpetas ::= FORMATO_DIRECCION__RELATIVA otrosNombresDeCarpetas 
+            {
+              Object RESULT =null;
+		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		manejadorMkdir.crearCarpetasConDireccion(manejadorDirecciones.manejarDireccionRelativa(b),manejadorCd);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("nombresDeCarpetas",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 34: // nombresDeCarpetas ::= FORMATO_DIRECCION_ABSOLUTA otrosNombresDeCarpetas 
+            {
+              Object RESULT =null;
+		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int dright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		String d = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		manejadorMkdir.crearCarpetasConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("nombresDeCarpetas",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 35: // otrosNombresDeCarpetas ::= nombresDeCarpetas 
+            {
+              Object RESULT =null;
+
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("otrosNombresDeCarpetas",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 36: // otrosNombresDeCarpetas ::= IDENTIFICADOR 
+            {
+              Object RESULT =null;
+		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		manejadorMkdir.crearDirectorioSoloConId(b,manejador.getMiTerminal().getDireccionActual());System.out.printf("Nombre de archivo:%s",b);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("otrosNombresDeCarpetas",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 37: // otrosNombresDeCarpetas ::= FORMATO_DIRECCION__RELATIVA 
+            {
+              Object RESULT =null;
+		int cleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String c = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		manejadorMkdir.crearCarpetasConDireccion(manejadorDirecciones.manejarDireccionRelativa(c),manejadorCd);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("otrosNombresDeCarpetas",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 38: // otrosNombresDeCarpetas ::= FORMATO_DIRECCION_ABSOLUTA 
+            {
+              Object RESULT =null;
+		int dleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int dright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String d = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		manejadorMkdir.crearCarpetasConDireccion(manejadorDirecciones.manejarDireccionAbsoluta(d),manejadorCd);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("otrosNombresDeCarpetas",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 

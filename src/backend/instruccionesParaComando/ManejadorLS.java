@@ -58,7 +58,7 @@ public class ManejadorLS {
     }
 
     public void buscarHijosConDireccion(String direccion, ManejadorCD manejadorCd, String tipoDeComando) {//Se le manda una direccion echa y derecha
-        if (manejadorCd.buscarDireccion(direccion)) {//Si la direccion se ha encontrado se procede , y si no pues ya mandara mismo cd que no existe la direccion
+        if (manejadorCd.buscarDireccion(direccion,false)) {//Si la direccion se ha encontrado se procede , y si no pues ya mandara mismo cd que no existe la direccion
             switch (tipoDeComando) {
                 case "ls":
                     buscarHijosDeNodoSinDireccionEspecifica(direccion);

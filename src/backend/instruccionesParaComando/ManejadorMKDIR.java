@@ -51,8 +51,8 @@ public class ManejadorMKDIR {
         }
     }
 
-    public void crearDirectorioSoloConId(String nombreDeHijo) {
-        String direccionActual = this.manejador.getMiTerminal().getDireccionActual();
+    public void crearDirectorioSoloConId(String nombreDeHijo,String direccionP) {
+        String direccionActual = direccionP;
         DefaultMutableTreeNode nuevoNodo = new DefaultMutableTreeNode(nombreDeHijo);//Se crea el nodo
         if (buscarDirectorio(nombreDeHijo)) {
             this.manejador.getMiTerminal().informarQueLaCarpetaYaExiste(nombreDeHijo);
@@ -77,6 +77,14 @@ public class ManejadorMKDIR {
             this.manejador.getMiTerminal().actualizarArbol();
         }
 
+    }
+    
+        public void crearCarpetasConDireccion(String direccion,ManejadorCD manejadorCd){
+        ManejadorDeDirecciones manejadorDirecciones = new ManejadorDeDirecciones(manejador);
+        String[] direcciones=manejadorDirecciones.buscarNombreDeArchivo(direccion);
+        if(manejadorCd.buscarDireccion(direcciones[1],false)){//La direccion existe y se puede crear el archivo
+                crearDirectorioSoloConId(direcciones[0],direcciones[1]);
+        }//Cd informar si no existe el directorio
     }
 
 }

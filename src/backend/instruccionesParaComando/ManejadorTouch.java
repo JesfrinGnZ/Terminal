@@ -35,8 +35,8 @@ public class ManejadorTouch {
         return false;
     }
 
-    public void crearArchivosSoloConId(String nombreDeHijo) {
-        String direccionActual = this.manejador.getMiTerminal().getDireccionActual();
+    public void crearArchivosSoloConId(String nombreDeHijo,String direccionDeLexer) {
+        String direccionActual = direccionDeLexer;
         if (!buscarSiArchivoYaExiste(nombreDeHijo, direccionActual)) {
             if (nombreDeHijo.equals(".") || nombreDeHijo.equals("..")) {//Solo se actualiza el archivo
                 int contador = 0;
@@ -83,5 +83,13 @@ public class ManejadorTouch {
         Random r = new Random();
         tamano = r.nextInt(40) + 1;
         return tamano;
+    }
+
+    public void crearArchivosConDireccion(String direccion,ManejadorCD manejadorCd){
+        ManejadorDeDirecciones manejadorDirecciones = new ManejadorDeDirecciones(manejador);
+        String[] direcciones=manejadorDirecciones.buscarNombreDeArchivo(direccion);
+        if(manejadorCd.buscarDireccion(direcciones[1],false)){//La direccion existe y se puede crear el archivo
+                crearArchivosSoloConId(direcciones[0],direcciones[1]);
+        }//Cd informar si no existe el directorio
     }
 }

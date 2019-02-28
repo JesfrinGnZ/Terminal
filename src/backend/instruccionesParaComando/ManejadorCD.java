@@ -20,14 +20,16 @@ public class ManejadorCD {
         this.manejador = manejador;
     }
 
-    public boolean buscarDireccion(String direccion) {
+    public boolean buscarDireccion(String direccion, boolean seDebeCambiarDireccion) {
         if (direccion == null) {//Vuelva a raiz
             this.manejador.getMiTerminal().cambiarDireccionEnTerminal(this.manejador.getDocumentos().get(0));
             return true;
         } else {//Busque la direccion que se le ha especificado
             for (Documento documento : manejador.getDocumentos()) {
                 if (documento.getDireccion().equals(direccion) && documento.esFolder()) {
-                    manejador.getMiTerminal().cambiarDireccionEnTerminal(documento);
+                    if (seDebeCambiarDireccion) {
+                        manejador.getMiTerminal().cambiarDireccionEnTerminal(documento);
+                    }
                     return true;
 
                 }

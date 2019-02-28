@@ -55,4 +55,20 @@ public class ManejadorDeDirecciones {//Clase que convierte cualquier direccion a
         }
 
     }
+    
+
+    public String[] buscarNombreDeArchivo(String direccion){//Debe recibir una direccion ya formada
+        String[] direcciones = new String[2];
+        String[] direccionesActuales = direccion.split("/");
+        String soloDireccion="";
+        for (int i = 0; i < direccionesActuales.length-1; i++) {
+            soloDireccion+=direccionesActuales[i]+"/";
+        }
+        direcciones[1]=restructurarDireccion(soloDireccion);
+         System.out.println("SOLO DIRECCION:"+direcciones[1]);
+        direcciones[0]=direccionesActuales[direccionesActuales.length-1];
+                 System.out.println("Nombre de archivo:"+direcciones[0]);
+
+        return direcciones;
+    }
 }
